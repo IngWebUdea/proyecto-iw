@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/04/2017 10:31:59 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Pais" table="paises">
+        <id name="idPais" type="java.lang.Integer">
+            <column name="idpaises" />
+            <generator class="identity" />
+        </id>
+        <property name="codigo" type="java.lang.String">
+            <column name="codigo" not-null="true" length="16"/>
+        </property>
+        <property name="pais" type="java.lang.String">
+            <column name="pais" not-null="true" length="64"/>
+        </property>
+    </class>
+</hibernate-mapping>

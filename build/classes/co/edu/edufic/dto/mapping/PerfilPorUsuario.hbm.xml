@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/04/2017 02:04:52 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.PerfilPorUsuario" table="rel_perfiles_usuarios">
+        
+        <composite-id name="idPerfilPorUsuario" class="co.edu.edufic.dto.IdPerfilPorUsuario">
+        	
+        	<key-many-to-one name="idUsuario" class="co.edu.edufic.dto.Usuario">
+        		<column name="usuario" not-null="true" length="32"></column>
+        	</key-many-to-one>
+        	
+        	<key-many-to-one name="idPerfil" class="co.edu.edufic.dto.Perfil">
+        		<column name="perfil" not-null="true" ></column>
+        	</key-many-to-one>
+        	
+        </composite-id>
+        
+    </class>
+</hibernate-mapping>

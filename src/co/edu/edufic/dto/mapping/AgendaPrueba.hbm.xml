@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1/05/2017 10:13:57 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.AgendaPrueba" table="agenda_pruebas">
+        
+        <composite-id name="idAgendaPrueba" class="co.edu.edufic.dto.IdAgendaPrueba">
+        	
+        	<key-many-to-one name="pruebaId" class="co.edu.edufic.dto.Prueba">
+        		<column name="pruebas_codigo" length="16" not-null="true"></column>
+        	</key-many-to-one>
+        	
+        	 <key-many-to-one name="grupoId" class="co.edu.edufic.dto.Grupo">
+        	 	<column name="grupos_idgrupos" length="16" not-null="true"></column>
+        	 </key-many-to-one>
+        	 
+        	 <key-property name="fechaAplica">
+        	 	<column name="fecha_aplica" not-null="true"></column>
+        	 </key-property>
+                
+        </composite-id>
+        
+        <many-to-one name="usuarioEncargado" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuario_encargado" length="32" />
+        </many-to-one>
+        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuario_crea" length="32" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuario_modifica" length="32" />
+        </many-to-one>
+        <many-to-one name="usuarioCancela" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuario_cancela" length="32" />
+        </many-to-one>
+        <property name="fechaCrea" type="java.util.Date">
+            <column name="fecha_crea" not-null="true"/>
+        </property>
+        <property name="fechaMoodifica" type="java.util.Date">
+            <column name="fecha_modifica" />
+        </property>
+        <property name="fechaCancela" type="java.util.Date">
+            <column name="fecha_cancela" />
+        </property>
+        <property name="cancelado" type="java.lang.Boolean">
+            <column name="cancelado" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1/05/2017 10:50:43 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.EstudiantePorAcudiente" table="rel_estudiante_acudiente">
+        
+        <composite-id name="idEstudiantePorAcudiente" class="co.edu.edufic.dto.IdEstudiantePorAcudiente">
+        	
+        	<key-many-to-one name="estudianteId" class="co.edu.edufic.dto.Persona">
+        		<column name="idestudiante" length="32" not-null="true"></column>
+        	</key-many-to-one>
+        	
+        	<key-many-to-one name="acudienteId" class="co.edu.edufic.dto.Persona">
+        		<column name="idacudiente" length="32" not-null="true"></column>
+        	</key-many-to-one>
+        	
+        	<key-many-to-one name="grupoId" class="co.edu.edufic.dto.Grupo">
+        		<column name="grupo" length="16" not-null="true"></column>
+        	</key-many-to-one>
+        	
+        </composite-id>
+        
+        <property name="activo" type="java.lang.Boolean">
+            <column name="ACTIVO" not-null="true"/>
+        </property>
+        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuario_crea" length="32" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuario_modifica" length="32"/>
+        </many-to-one>
+        <property name="fechaCrea" type="java.util.Date">
+            <column name="fecha_crea" not-null="true"/>
+        </property>
+        <property name="fechaModifica" type="java.util.Date">
+            <column name="fecha_modifica" />
+        </property>
+    </class>
+</hibernate-mapping>

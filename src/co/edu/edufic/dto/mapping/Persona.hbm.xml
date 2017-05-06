@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/04/2017 12:32:59 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Persona" table="personas">
+        <id name="idPersona" type="java.lang.String">
+            <column name="IDPERSONA" not-null="true" length="32"/>
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="java.lang.String">
+            <column name="NOMBRE" not-null="true" length="128"/>
+        </property>
+        <property name="apellido" type="java.lang.String">
+            <column name="APELLIDO" not-null="true" length="128"/>
+        </property>
+        <property name="telefono" type="java.lang.String">
+            <column name="TELEFONO" not-null="true" length="32"/>
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" not-null="true" length="128"/>
+        </property>
+        <property name="institucion" type="java.lang.String">
+            <column name="INSTITUCION" not-null="true" length="128"/>
+        </property>
+        <property name="fechaNacimiento" type="java.util.Date">
+            <column name="FECHANACIMIENTO" not-null="true"/>
+        </property>
+        <many-to-one name="tipoDocumento" class="co.edu.edufic.dto.TipoDoc" fetch="join">
+            <column name="TIPODOCUMENTO" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="ciudad" class="co.edu.edufic.dto.Ciudad" fetch="join">
+            <column name="CIUDAD" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

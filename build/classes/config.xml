@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+<!-- Datasource con los datos de conexión a la DB -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/eduficticia"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+	</bean>
+	
+	<!-- Referenciamos el dataSource y los archivos de mapeo, tambien las propiedades de hibernate -->
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="mappingResources">
+			<list>
+				<value>co/edu/edufic/dto/mapping/Pais.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Provincia.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Ciudad.hbm.xml</value>	
+				<value>co/edu/edufic/dto/mapping/Usuario.hbm.xml</value>					
+				<value>co/edu/edufic/dto/mapping/Perfil.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/PerfilPorUsuario.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Persona.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/TipoDoc.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Grupo.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Grado.hbm.xml</value>		
+				<value>co/edu/edufic/dto/mapping/EstudiantePorAcudiente.hbm.xml</value>	
+				<value>co/edu/edufic/dto/mapping/Categoria.hbm.xml</value>		
+				<value>co/edu/edufic/dto/mapping/Area.hbm.xml</value>	
+				<value>co/edu/edufic/dto/mapping/Tematica.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/TematicasPorPregunta.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Pregunta.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/Prueba.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/PreguntasPorPrueba.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/AgendaPrueba.hbm.xml</value>
+				<value>co/edu/edufic/dto/mapping/RegistroRespuesta.hbm.xml</value>
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Hacemos referencia a los beans sessionFactory y dataSource -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Procedemos a inyectar el sessionFactory en cada una de las implementaciones -->
+	
+	<bean name="paisDaoBean" class="co.edu.edufic.dao.impl.PaisDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="provinciaDaoBean" class="co.edu.edufic.dao.impl.ProvinciaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="ciudadDaoBean" class="co.edu.edufic.dao.impl.CiudadDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="tipoDocDaoBean" class="co.edu.edufic.dao.impl.TipoDocDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="usuarioDaoBean" class="co.edu.edufic.dao.impl.UsuarioDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="perfilDaoBean" class="co.edu.edufic.dao.impl.PerfilDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="perfilPorUsuarioDaoBean" class="co.edu.edufic.dao.impl.PerfilPorUsuarioDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="personaDaoBean" class="co.edu.edufic.dao.impl.PersonaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="grupoDaoBean" class="co.edu.edufic.dao.impl.GrupoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="gradoDaoBean" class="co.edu.edufic.dao.impl.GradoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="estudiantePorAcudienteDaoBean" class="co.edu.edufic.dao.impl.EstudiantePorAcudienteDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="categoriaDaoBean" class="co.edu.edufic.dao.impl.CategoriaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="areaDaoBean" class="co.edu.edufic.dao.impl.AreaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="tematicaDaoBean" class="co.edu.edufic.dao.impl.TematicaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="tematicasPorPreguntaDaoBean" class="co.edu.edufic.dao.impl.TematicasPorPreguntaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="preguntaDaoBean" class="co.edu.edufic.dao.impl.PreguntaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="pruebaDaoBean" class="co.edu.edufic.dao.impl.PruebaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="preguntasPorPruebaDaoBean" class="co.edu.edufic.dao.impl.PreguntasPorPruebaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="agendaPruebaDaoBean" class="co.edu.edufic.dao.impl.AgendaPruebaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="registroRespuestaDaoBean" class="co.edu.edufic.dao.impl.RegistroRespuestaDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean name="usuarioBLBean" class="co.edu.edufic.bl.impl.UsuarioBLImpl">
+		<property name="usuarioDAO" ref="usuarioDaoBean"></property>
+		<property name="perfilDAO" ref="perfilDaoBean"></property>
+	</bean>
+	
+	<bean name="preguntaBLBean" class="co.edu.edufic.bl.impl.PreguntaBLImpl">
+		<property name="preguntaDAO" ref="preguntaDaoBean"></property>
+		<property name="usuarioDAO" ref="usuarioDaoBean"></property>
+		<property name="tematicaDAO" ref="tematicaDaoBean"></property>
+		<property name="tematicasPorPreguntaDAO" ref="tematicasPorPreguntaDaoBean"></property>
+	</bean>
+	
+	<bean name="pruebaBLBean" class="co.edu.edufic.bl.impl.PruebaBLImpl">
+		<property name="pruebaDAO" ref="pruebaDaoBean"></property>	
+		<property name="usuarioDAO" ref="usuarioDaoBean"></property>
+		<property name="preguntaDAO" ref="preguntaDaoBean"></property>
+		<property name="tematicasPorPreguntaDAO" ref="tematicasPorPreguntaDaoBean"></property>
+		<property name="categoriaDAO" ref="categoriaDaoBean"></property>
+	</bean>
+	
+
+	<context:component-scan base-package="co.edu.edufic.ws"></context:component-scan>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+</beans>

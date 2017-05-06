@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/04/2017 10:31:59 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.TipoDoc" table="tipos_doc">
+        <id name="idTipoDoc" type="java.lang.Integer">
+            <column name="idTipoDoc" not-null="true" />
+            <generator class="identity" />
+        </id>
+        <property name="tipo" type="java.lang.String">
+            <column name="TIPO" not-null="true" length="64"/>
+        </property>
+    </class>
+</hibernate-mapping>

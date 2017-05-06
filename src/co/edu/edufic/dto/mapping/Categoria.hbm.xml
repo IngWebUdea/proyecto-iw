@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1/05/2017 09:50:42 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Categoria" table="categorias">
+        <id name="idCategoria" type="java.lang.String">
+            <column name="id_categoria" not-null="true" length="16"/>
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="java.lang.String">
+            <column name="DESCRIPCION" not-null="true" length="64"/>
+        </property>
+    </class>
+</hibernate-mapping>

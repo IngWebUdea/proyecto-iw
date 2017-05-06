@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/04/2017 01:36:38 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Usuario" table="usuarios">
+        <id name="login" type="java.lang.String">
+            <column name="login" not-null="true" length="32"/>
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="java.lang.String">
+            <column name="password" not-null="true" length="128" />
+        </property>
+        <property name="activo" type="java.lang.Boolean">
+            <column name="activo" not-null="true" />
+        </property>        
+         
+        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuariocrea" not-null="true" length="32"/>
+        </many-to-one>
+       
+        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="usuariomodifica" not-null="false" length="32"/>
+        </many-to-one>
+        
+        <property name="fechaCrea" type="java.util.Date">
+            <column name="fechacrea" not-null="true" />
+        </property>
+        <property name="fechaModifica" type="java.util.Date">
+            <column name="fechamodifica" not-null="false"/>
+        </property>
+        
+        <many-to-one name="persona" class="co.edu.edufic.dto.Persona" fetch="join">
+            <column name="persona" not-null="true" length="32"/>
+        </many-to-one> 
+        
+        <set name="perfiles" fetch="join">
+        	<key column="usuario" ></key>
+        	<one-to-many class="co.edu.edufic.dto.PerfilPorUsuario" />
+        	
+        </set>       
+        
+        
+        <!--  
+        
+        <set name="perfiles" fetch="join">
+        	<key column="idPerfil"></key>
+        	<one-to-many class="co.edu.edufic.dto.PerfilPorUsuario" />
+        </set>
+        
+        <property name="persona" type="java.lang.String">
+            <column name="persona" not-null="true"/>
+        </property>
+        
+        -->
+        
+    </class>
+</hibernate-mapping>

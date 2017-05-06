@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1/05/2017 10:39:54 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.PreguntasPorPrueba" table="rel_preguntas_prueba">
+        
+        <composite-id name="idPreguntasPorPrueba" class="co.edu.edufic.dto.IdPreguntasPorPrueba">
+        	
+        	<key-many-to-one name="preguntaId" class="co.edu.edufic.dto.Pregunta">
+        		<column name="pregunta" not-null="true"></column>
+        	</key-many-to-one>
+        	
+        	<key-many-to-one name="pruebaId" class="co.edu.edufic.dto.Prueba">
+        		<column name="prueba" length="16" not-null="true"></column>
+        	</key-many-to-one>
+        	
+        </composite-id>
+        
+    </class>
+</hibernate-mapping>

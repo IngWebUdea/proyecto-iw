@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 1/05/2017 01:43:59 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Pregunta" table="preguntas">
+        <id name="idPregunta" type="java.lang.Integer">
+            <column name="IDPREGUNTA" />
+            <generator class="identity" />
+        </id>
+        <property name="texto" type="java.lang.String">
+            <column name="TEXTO" not-null="true"/>
+        </property>
+        <property name="numOpt" type="java.lang.Integer">
+            <column name="NUMOPT" not-null="true"/>
+        </property>
+        <property name="opciones" type="java.lang.String">
+            <column name="OPCIONES" not-null="true"/>
+        </property>
+        <property name="optCorrecta" type="java.lang.Character">
+            <column name="OPT_CORRECTA" not-null="true"/>
+        </property>
+        <property name="nivelDif" type="java.lang.Character">
+            <column name="NIVEL_DIF" not-null="true"/>
+        </property>
+        <property name="imgPath" type="java.lang.String">
+            <column name="IMGPATH" length="265"/>
+        </property>
+        <property name="tiempoRta" type="java.sql.Time">
+            <column name="TIEMPO_RTA" />
+        </property>
+        <property name="solucion" type="java.lang.String">
+            <column name="SOLUCION" />
+        </property>
+        <property name="sugEspecifica" type="java.lang.String">
+            <column name="SUG_ESPECIFICA" length="512"/>
+        </property>
+        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join">
+            <column name="USUARIOCREA" not-null="true" length="32"/>
+        </many-to-one>
+        <property name="fechaCrea" type="java.util.Date">
+            <column name="FECHACREA" not-null="true"/>
+        </property>
+        
+        <set name="tematicas" fetch="join">
+        	<key column="pregunta" ></key>
+        	<one-to-many class="co.edu.edufic.dto.TematicasPorPregunta" />        	
+        </set>
+        
+    </class>
+</hibernate-mapping>

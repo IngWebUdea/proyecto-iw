@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/04/2017 03:34:34 PM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Tematica" table="tematicas">
+        <id name="idTematica" type="java.lang.Integer">
+            <column name="IDTEMATICA" not-null="true"/>
+            <generator class="identity" />
+        </id>
+        <property name="tematica" type="java.lang.String">
+            <column name="TEMATICA" not-null="true" length="256"/>
+        </property>
+        <property name="sugAprend" type="java.lang.String">
+            <column name="sug_aprend" length="512" not-null="false" />
+        </property>
+        <many-to-one name="area" class="co.edu.edufic.dto.Area" fetch="join">
+            <column name="AREA" not-null="true"/>
+        </many-to-one>
+    </class>
+</hibernate-mapping>

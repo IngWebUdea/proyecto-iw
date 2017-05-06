@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 30/04/2017 11:31:14 AM by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="co.edu.edufic.dto.Ciudad" table="ciudades">
+        <id name="idCiudad" type="java.lang.Integer">
+            <column name="idciudades" />
+            <generator class="identity" />
+        </id>
+        <property name="ciudad" type="java.lang.String">
+            <column name="CIUDAD" not-null="true" length="64"/>
+        </property>
+        <property name="codigo" type="java.lang.String">
+            <column name="CODIGO" not-null="true" length="16"/>
+        </property>
+        <many-to-one name="provincia" class="co.edu.edufic.dto.Provincia" fetch="join">
+            <column name="PROVINCIA" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

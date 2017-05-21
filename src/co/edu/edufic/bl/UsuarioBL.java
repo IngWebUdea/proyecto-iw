@@ -1,5 +1,8 @@
 package co.edu.edufic.bl;
 
+import java.util.Set;
+
+import co.edu.edufic.dto.PerfilPorUsuario;
 import co.edu.edufic.exception.MyException;
 
 /**
@@ -19,13 +22,12 @@ public interface UsuarioBL {
 	public void autenticar(String login, String pwd) throws MyException;
 	
 	/**
-	 * Método para validar si un usuario dado posee un perfil especíco.
-	 * @param login
-	 * @param idPerfil
-	 * @return
-	 * @throws MyException
+	 * Método para validar si un perfil dado se enecentra dentro de los perfiles asociados a un usuario.
+	 * @param perfilesUsuario Conjunto de perfiles de un usuario ¿.
+	 * @param idPerfil Identificador del perfil que se requiere validar.
+	 * @throws MyException Cuando hay un error en la sonsulta del perfil
 	 */
-	public boolean validarPerfil(String login, Integer idPerfil)  throws MyException;
+	public void validarPerfil(Set<PerfilPorUsuario> perfilesUsuario, Integer idPerfil)  throws MyException;
 	
 
 }

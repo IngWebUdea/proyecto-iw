@@ -7,11 +7,11 @@
         
         <composite-id name="idPreguntasPorPrueba" class="co.edu.edufic.dto.IdPreguntasPorPrueba">
         	
-        	<key-many-to-one name="preguntaId" class="co.edu.edufic.dto.Pregunta">
+        	<key-many-to-one name="pregunta" class="co.edu.edufic.dto.Pregunta">
         		<column name="pregunta" not-null="true"></column>
         	</key-many-to-one>
         	
-        	<key-many-to-one name="pruebaId" class="co.edu.edufic.dto.Prueba">
+        	<key-many-to-one name="prueba" class="co.edu.edufic.dto.Prueba">
         		<column name="prueba" length="16" not-null="true"></column>
         	</key-many-to-one>
         	

@@ -17,9 +17,7 @@ public class PerfilPorUsuario implements Serializable {
 	public IdPerfilPorUsuario getIdPerfilPorUsuario() {
 		return idPerfilPorUsuario;
 	}
-
 	public void setIdPerfilPorUsuario(IdPerfilPorUsuario idPerfilPorUsuario) {
 		this.idPerfilPorUsuario = idPerfilPorUsuario;
 	}
-	
 }

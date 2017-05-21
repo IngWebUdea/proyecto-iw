@@ -25,7 +25,7 @@ public class Pregunta implements Serializable {
 	private Time tiempoRta;							//Tiempo estimado para resolver la pregunta.
 	private String solucion;						//Solución a la pregunta.
 	private String sugEspecifica;					//Sugerencia el aprendizaje específico con la pregunta.
-	private Set<TematicasPorPregunta> tematicas;	//Conjunt de temáticas de la pregunta
+	//private Set<TematicasPorPregunta> tematicas;	//Conjunt de temáticas de la pregunta
 	
 	public String getSugEspecifica() {
 		return sugEspecifica;
@@ -102,11 +102,11 @@ public class Pregunta implements Serializable {
 	public void setFechaCrea(Date fechaCrea) {
 		this.fechaCrea = fechaCrea;
 	}
-	public Set<TematicasPorPregunta> getTematicas() {
-		return tematicas;
-	}
-	public void setTematicas(Set<TematicasPorPregunta> tematicas) {
-		this.tematicas = tematicas;
-	}
+//	public Set<TematicasPorPregunta> getTematicas() {
+//		return tematicas;
+//	}
+//	public void setTematicas(Set<TematicasPorPregunta> tematicas) {
+//		this.tematicas = tematicas;
+//	}
 		
 }

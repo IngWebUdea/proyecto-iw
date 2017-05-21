@@ -48,52 +48,39 @@ public class UsuarioBLImpl implements UsuarioBL {
 	}
 	
 	@Override
-	public boolean validarPerfil(String login, Integer idPerfil) throws MyException {
+	public void validarPerfil(Set<PerfilPorUsuario> perfilesUsuario, Integer idPerfil) throws MyException {
 		
-		Usuario usuario = null;
-		Perfil perfil = null;		
-		Set<PerfilPorUsuario> perfilesUsuario;
-		Integer perfilUsuario;
-		Boolean permitido = Boolean.FALSE;	
 		
-		//Se valida que los campos no sean vacíos.		
-		if(login.isEmpty() || login == null){
-			throw new MyException("El campo login es requerido");
+		Perfil perfil = null;
+		Integer perfilUsuario;	
+		Boolean checkPerfil = Boolean.FALSE;
+		
+		//Se validan campos no nulos 
+		if(perfilesUsuario.isEmpty() || perfilesUsuario == null){
+			throw new MyException("El campo perfiles de usuario es requerido");
 		}
-		
 		if(idPerfil == null){
 			throw new MyException("El campo perfil es requerido");
 		}
 		
-		//Se valida que el usuario este registrado en el sistema.		
-		usuario = usuarioDAO.findById(login);		
-		if(usuario == null){
-			throw new MyException("Usuario no registrado en el sistema");
-		}
-		
-		//Se valida que el perfil esté registrado en el sistema
+		//Se valida que el perfil esté registrado en el sistema.
 		perfil = perfilDAO.findById(idPerfil);
 		if(perfil == null){
 			throw new MyException("Perfil no registrado en el sistema");
 		}
 		
-		//Obtenemos los perfiles del usuario.
-		usuario = usuarioDAO.findById(login);		
-		perfilesUsuario = usuario.getPerfiles();
-		
-		//Verificamos que tenga el perfil 
+		//Verificamos que el usuario tenga el perfil dado como parámetro.
 		for(PerfilPorUsuario pu : perfilesUsuario){			
-			perfilUsuario = pu.getIdPerfilPorUsuario().getIdPerfil().getIdPerfil();
+			perfilUsuario = pu.getIdPerfilPorUsuario().getPerfil().getIdPerfil();
 			if(perfilUsuario == idPerfil){
-				permitido = Boolean.TRUE;
+				checkPerfil = Boolean.TRUE;
 			}
 		}				
 		
-		if(!permitido){
+		if(!checkPerfil){
 			throw new MyException("El usuario no posee el perfil solicitado");
 		}
 		
-		return permitido;
 	}
 		
 	

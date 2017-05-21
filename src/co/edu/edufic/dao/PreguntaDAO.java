@@ -18,6 +18,13 @@ public interface PreguntaDAO {
 	 */
 	public List<Pregunta> allPreguntas() throws MyException;
 	
+//	/**
+//	 * Obtiene la lista de preguntas con la temática dada existentes en la db.
+//	 * @return Lista de preguntas.
+//	 * @throws MyException Ocurre cuando hay un error en la conexión a la db.
+//	 */
+//	public List<Pregunta> allPreguntasByTematica(Integer idTematica) throws MyException;
+	
 	/**
 	 * Obtiene una pregunta dado su id en la db.
 	 * @param idPregunta Identificador de la pregunta en la db.

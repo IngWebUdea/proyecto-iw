@@ -8,7 +8,6 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Criterion;
 
 import co.edu.edufic.dao.TematicasPorPreguntaDAO;
 import co.edu.edufic.dto.IdTematicasPorPregunta;
@@ -26,46 +25,37 @@ public class TematicasPorPreguntaDAOImpl implements TematicasPorPreguntaDAO {
 		Criteria criteria = null;
 		List<TematicasPorPregunta> tematicasPorPreguntas = new ArrayList<TematicasPorPregunta>();
 		
-		try{
-			
+		try{			
 			session = sessionFactory.getCurrentSession();
 			criteria = session.createCriteria(TematicasPorPregunta.class);	
 			
 			tematicasPorPreguntas = criteria.list();			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las tematicasPorPreguntas en la db");
-		}
-		
+		}		
 		return tematicasPorPreguntas;
 	}
 	
 	@Override
-	public List<TematicasPorPregunta> allTematicasPorPreguntasByTematica(Integer tematicaId) throws MyException {
+	public  List<TematicasPorPregunta> allTematicasPorPreguntasByTematica(Integer idTematica) throws MyException {
 		
 		Session session = null;
 		Query query = null;
 		String strQuery = "";
-		List<TematicasPorPregunta> tematicasPorPreguntas = new ArrayList<TematicasPorPregunta>();
-		
+		 List<TematicasPorPregunta> tematicasPorPreguntas;		
 		
 		try{
-			Integer arg = 1;	
-			strQuery = "select t from TematicasPorPregunta t where t.idTematicasPorPregunta.idTematica.idTematica=:tematicaId";
+			strQuery = "select t from TematicasPorPregunta t where t.idTematicasPorPregunta.tematica.idTematica=:idTematica";
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery(strQuery);
-			query.setParameter("tematicaId", tematicaId);
-			
+			query.setParameter("idTematica", idTematica);			
 			tematicasPorPreguntas = query.list();
-			
 				
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las tematicasPorPreguntas con parámetro en la db");
 		}
-		
 		return tematicasPorPreguntas;
-	}
-	
-	
+	}	
 
 	@Override
 	public TematicasPorPregunta findById(IdTematicasPorPregunta idTematicasPorPregunta) throws MyException {

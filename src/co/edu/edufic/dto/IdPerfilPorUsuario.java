@@ -9,19 +9,19 @@ import java.io.Serializable;
  */
 public class IdPerfilPorUsuario implements Serializable {
 	
-	private Usuario idUsuario;		//Identificador del usuario.
-	private Perfil idPerfil;		//Identificador del perfil.
+	private Usuario usuario;		//Identificador del usuario.
+	private Perfil perfil;			//Identificador del perfil.
 	
-	public Usuario getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setIdUsuario(Usuario idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
-	public Perfil getIdPerfil() {
-		return idPerfil;
+	public Perfil getPerfil() {
+		return perfil;
 	}
-	public void setIdPerfil(Perfil idPerfil) {
-		this.idPerfil = idPerfil;
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
 	}
 }

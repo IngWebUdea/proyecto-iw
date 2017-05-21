@@ -26,7 +26,7 @@ public interface TematicasPorPreguntaDAO {
 	 * @return Listado de tematicas por pregnta
 	 * @throws MyException Ocurre cuando hay un error en la conexión a la db. 
 	 */
-	public List<TematicasPorPregunta> allTematicasPorPreguntasByTematica(Integer tematicaId) throws MyException;
+	public  List<TematicasPorPregunta> allTematicasPorPreguntasByTematica(Integer idTematica) throws MyException;
 	
 	/**
 	 * Obtiene una tematicasPorPregunta dado su id en la db.

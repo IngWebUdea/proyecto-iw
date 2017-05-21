@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -18,25 +17,39 @@ public class PreguntaDAOImpl implements PreguntaDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public List<Pregunta> allPreguntas() throws MyException {
-		
+	public List<Pregunta> allPreguntas() throws MyException {		
 		Session session = null;
 		Criteria criteria = null;
 		List<Pregunta> preguntas = new ArrayList<Pregunta>();
 		
-		try{
-			
+		try{			
 			session = sessionFactory.getCurrentSession();
-			criteria = session.createCriteria(Pregunta.class);
+			criteria = session.createCriteria(Pregunta.class);			
+			preguntas = criteria.list();	
 			
-			preguntas = criteria.list();			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las preguntas en la db");
-		}
-		
+		}		
 		return preguntas;
 	}
 	
+//	@Override
+//	public List<Pregunta> allPreguntasByTematica(Integer idTematica) throws MyException{
+//		Session session = null;
+//		Criteria criteria = null;
+//		List<Pregunta> preguntas = new ArrayList<Pregunta>();
+//		
+//		try{			
+//			session = sessionFactory.getCurrentSession();
+//			criteria = session.createCriteria(Pregunta.class);			
+//			preguntas = criteria.list();	
+//			
+//		}catch(HibernateException e){
+//			throw new MyException("Error consultando las preguntas en la db");
+//		}		
+//		return preguntas;
+//	}
+//	
 
 	@Override
 	public Pregunta findById(Integer idPregunta) throws MyException {

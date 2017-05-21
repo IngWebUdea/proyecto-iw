@@ -20,8 +20,7 @@ public class Usuario implements Serializable {
 	private Usuario usuarioModifica;			//Usuario que modifica.
 	private Date fechaCrea;						//Fecha en la que se crea el usuario.
 	private Date fechaModifica;					//Fecha en la que se modifica el cliente.
-	private Persona persona;					//Persona a la que corresponde el usuario.
-	
+	private Persona persona;					//Persona a la que corresponde el usuario.	
 	private Set<PerfilPorUsuario> perfiles;		//Perfiles asociados al usuario	
 	
 	public Usuario(){

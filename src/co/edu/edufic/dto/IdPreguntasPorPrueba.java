@@ -9,20 +9,19 @@ import java.io.Serializable;
  */
 public class IdPreguntasPorPrueba implements Serializable {
 	
-	private Prueba pruebaId;		//Identificador de la prueba.
-	private Pregunta preguntaId;	//Identificador de la pregunta.
-	
-	public Prueba getPruebaId() {
-		return pruebaId;
+	private Prueba prueba;		//Identificador de la prueba.
+	private Pregunta pregunta;	//Identificador de la pregunta.
+	public Prueba getPrueba() {
+		return prueba;
 	}
-	public void setPruebaId(Prueba pruebaId) {
-		this.pruebaId = pruebaId;
+	public void setPrueba(Prueba prueba) {
+		this.prueba = prueba;
 	}
-	public Pregunta getPreguntaId() {
-		return preguntaId;
+	public Pregunta getPregunta() {
+		return pregunta;
 	}
-	public void setPreguntaId(Pregunta preguntaId) {
-		this.preguntaId = preguntaId;
+	public void setPregunta(Pregunta pregunta) {
+		this.pregunta = pregunta;
 	}
 	
 }

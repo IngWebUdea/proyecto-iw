@@ -45,7 +45,7 @@ public class TematicasPorPreguntaDAOImplTest {
 			
 			for(TematicasPorPregunta t : tematicasPorPreguntas){
 				System.out.println("\n Las pregntas con la temática");
-				System.out.println("Pregunta: " + t.getIdTematicasPorPregunta().getIdPregunta().getTexto() + "\n");
+				System.out.println("Pregunta: " + t.getIdTematicasPorPregunta().getPregunta().getTexto() + "\n");
 			}			
 			assertTrue(tematicasPorPreguntas.size() > 0);
 		}catch (MyException e){	

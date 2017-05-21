@@ -2,6 +2,8 @@ package co.edu.edufic.bl.impl;
 
 import static org.junit.Assert.*;
 
+import java.util.Set;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.edufic.bl.UsuarioBL;
+import co.edu.edufic.dao.UsuarioDAO;
+import co.edu.edufic.dto.PerfilPorUsuario;
 import co.edu.edufic.exception.MyException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -18,10 +22,11 @@ import co.edu.edufic.exception.MyException;
 public class UsuarioBLImplTest {
 
 	@Autowired UsuarioBL usuarioBL;
+	@Autowired UsuarioDAO usuarioDAO;
 	
 	@Test
 	public void testAutenticarDone() {	
-		//patrón de los pwd es user01 : pwd01		
+		//patrón de los pwd es user01 : pwd01
 		try{
 			usuarioBL.autenticar("user03", "pwd03");			
 		}catch (MyException e) {
@@ -63,11 +68,12 @@ public class UsuarioBLImplTest {
 	@Test
 	public void testValidarPerfilDone() {	
 		
-		Boolean validate = Boolean.FALSE;
+		Set<PerfilPorUsuario> perfiles;
+		
 		try{
-			validate = usuarioBL.validarPerfil("user01", 1);
+			perfiles = usuarioDAO.findById("user01").getPerfiles();
+			usuarioBL.validarPerfil(perfiles, 1);			
 			
-			assertTrue(validate);
 		}catch (MyException e) {
 			e.printStackTrace();
 			fail(e.getMessage());			
@@ -77,11 +83,11 @@ public class UsuarioBLImplTest {
 	@Test
 	public void testValidarPerfilFailByUnknowedProfile() {	
 		
-		Boolean validate = Boolean.FALSE;
+		Set<PerfilPorUsuario> perfiles;
 		try{
-			validate = usuarioBL.validarPerfil("user01", 0);
+			perfiles = usuarioDAO.findById("user01").getPerfiles();
+			usuarioBL.validarPerfil(perfiles, 0);			
 			
-			assertTrue(validate);
 		}catch (MyException e) {
 			e.printStackTrace();
 			fail(e.getMessage());			
@@ -91,11 +97,11 @@ public class UsuarioBLImplTest {
 	@Test
 	public void testValidarPerfilFailByUnallowedProfile() {	
 		
-		Boolean validate = Boolean.FALSE;
+		Set<PerfilPorUsuario> perfiles;
 		try{
-			validate = usuarioBL.validarPerfil("user02", 1);
+			perfiles = usuarioDAO.findById("user02").getPerfiles();
+			usuarioBL.validarPerfil(perfiles, 1);			
 			
-			assertTrue(validate);
 		}catch (MyException e) {
 			e.printStackTrace();
 			fail(e.getMessage());			

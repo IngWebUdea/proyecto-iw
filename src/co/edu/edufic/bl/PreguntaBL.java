@@ -26,7 +26,27 @@ public interface PreguntaBL {
 	 * @throws MyException Ocurre cuando hay un error en la creación de la pregunta.
 	 */
 	public void registrarPregunta(String texto, Integer numOpciones, String jsonOpciones, Character optCorrecta, 
-			Character nivelDificultad, Integer idtematica, String loginUsuarioCrea, Date fechaCrea)throws MyException;
+			Character nivelDificultad, Integer idTematica, String loginUsuarioCrea, Date fechaCrea)throws MyException;
+	
+	/**
+	 * Consulta las preguntas que pertenecen a una temática específica.
+	 * @param idTematica Identificador de la temática.
+	 * @return Lista con las preguntas pertenecientes a la temática dada.
+	 * @throws MyException Ocurre cuando hay un error consultando las preguntas en la db.
+	 */
+	public List<Pregunta> preguntasPorTematica(Integer idTematica) throws MyException;
+	
+	/**
+	 * Consulta las preguntas que pertenecen a un área específica.
+	 * @param idArea Identificador del área.
+	 * @return Lista con las preguntas pertenecientes al área dada.
+	 * @throws MyException Ocurre cuando hay un error consultando las preguntas en la db.
+	 */ 
+	public List<Pregunta> preguntasPorArea(Integer idArea) throws MyException;
+	
+	public List<Pregunta> preguntas() throws MyException;
+	
+	
 	
 	
 	

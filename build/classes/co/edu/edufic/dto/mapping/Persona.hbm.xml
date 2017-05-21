@@ -26,10 +26,10 @@
         <property name="fechaNacimiento" type="java.util.Date">
             <column name="FECHANACIMIENTO" not-null="true"/>
         </property>
-        <many-to-one name="tipoDocumento" class="co.edu.edufic.dto.TipoDoc" fetch="join">
+        <many-to-one name="tipoDocumento" class="co.edu.edufic.dto.TipoDoc" lazy="false">
             <column name="TIPODOCUMENTO" not-null="true"/>
         </many-to-one>
-        <many-to-one name="ciudad" class="co.edu.edufic.dto.Ciudad" fetch="join">
+        <many-to-one name="ciudad" class="co.edu.edufic.dto.Ciudad" lazy="false">
             <column name="CIUDAD" not-null="true"/>
         </many-to-one>
     </class>

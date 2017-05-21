@@ -15,11 +15,11 @@
             <column name="activo" not-null="true" />
         </property>        
          
-        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join">
+        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" lazy="false">
             <column name="usuariocrea" not-null="true" length="32"/>
         </many-to-one>
        
-        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" fetch="join">
+        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" lazy="false">
             <column name="usuariomodifica" not-null="false" length="32"/>
         </many-to-one>
         
@@ -30,7 +30,7 @@
             <column name="fechamodifica" not-null="false"/>
         </property>
         
-        <many-to-one name="persona" class="co.edu.edufic.dto.Persona" fetch="join">
+        <many-to-one name="persona" class="co.edu.edufic.dto.Persona" lazy="false">
             <column name="persona" not-null="true" length="32"/>
         </many-to-one> 
         

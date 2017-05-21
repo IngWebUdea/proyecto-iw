@@ -7,11 +7,11 @@
     
     <composite-id name="idTematicasPorPregunta" class="co.edu.edufic.dto.IdTematicasPorPregunta">
     	
-    	<key-many-to-one name="idTematica" class="co.edu.edufic.dto.Tematica">
+    	<key-many-to-one name="tematica" class="co.edu.edufic.dto.Tematica" >
     		<column name="tematica" not-null="true"></column>
     	</key-many-to-one>
     	
-    	<key-many-to-one name="idPregunta" class="co.edu.edufic.dto.Pregunta">
+    	<key-many-to-one name="pregunta" class="co.edu.edufic.dto.Pregunta" lazy="false">
     		<column name="pregunta" not-null="true"></column>
     	</key-many-to-one>
     	

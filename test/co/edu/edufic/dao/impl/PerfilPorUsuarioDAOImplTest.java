@@ -31,8 +31,8 @@ public class PerfilPorUsuarioDAOImplTest {
 			perfilesPorUsuario = perfilPorUsuarioDAO.allPerfilesPorUsuario();
 			
 			for(PerfilPorUsuario pu : perfilesPorUsuario){
-				System.out.println("Perfil: " + pu.getIdPerfilPorUsuario().getIdPerfil().getCodigo() + " / "
-						+ "Usuario: " + pu.getIdPerfilPorUsuario().getIdUsuario().getLogin() + "\n");
+				System.out.println("Perfil: " + pu.getIdPerfilPorUsuario().getPerfil().getCodigo() + " / "
+						+ "Usuario: " + pu.getIdPerfilPorUsuario().getUsuario().getLogin() + "\n");
 			}
 			
 			assertTrue(perfilesPorUsuario.size() > 0);

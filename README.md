@@ -26,3 +26,5 @@ loginUsuarioCrea:user01
 fechaCrea:2017/05/21
 
 En la figura se muestra la prueba del servicio en postman.
+
+![crearpreguntaws](https://cloud.githubusercontent.com/assets/20157011/26286908/41c2bc7e-3e35-11e7-81df-7c898cce87aa.png)

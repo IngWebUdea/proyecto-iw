@@ -36,8 +36,7 @@
         
         <set name="perfiles" fetch="join">
         	<key column="usuario" ></key>
-        	<one-to-many class="co.edu.edufic.dto.PerfilPorUsuario" />
-        	
+        	<one-to-many class="co.edu.edufic.dto.PerfilPorUsuario" />        	
         </set>       
         
         

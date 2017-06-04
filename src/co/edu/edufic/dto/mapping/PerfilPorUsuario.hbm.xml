@@ -6,11 +6,11 @@
     <class name="co.edu.edufic.dto.PerfilPorUsuario" table="rel_perfiles_usuarios">        
         <composite-id name="idPerfilPorUsuario" class="co.edu.edufic.dto.IdPerfilPorUsuario">
         	
-        	<key-many-to-one name="usuario" class="co.edu.edufic.dto.Usuario">
+        	<key-many-to-one name="usuario" class="co.edu.edufic.dto.Usuario" lazy="false">
         		<column name="usuario" not-null="true" length="32"></column>
         	</key-many-to-one>
         	
-        	<key-many-to-one name="perfil" class="co.edu.edufic.dto.Perfil">
+        	<key-many-to-one name="perfil" class="co.edu.edufic.dto.Perfil" lazy="false">
         		<column name="perfil" not-null="true" ></column>
         	</key-many-to-one>
         	

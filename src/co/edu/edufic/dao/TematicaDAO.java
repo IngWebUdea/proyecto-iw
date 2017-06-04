@@ -20,6 +20,14 @@ public interface TematicaDAO {
 	public List<Tematica> allTematicas() throws MyException;
 	
 	/**
+	 * Obtine la lista de temáticas dado el identificador del área a la que pertenecen
+	 * @param idArea Ideantificado del área.
+	 * @return Lista de temáticas pertenecientes al área dada.
+	 * @throws MyException
+	 */
+	public List<Tematica> allTematicasByArea(Integer idArea) throws MyException;
+	
+	/**
 	 * Obtiene una temática dado su id en la db.
 	 * @param idTematica Identificador del temática en la db.
 	 * @return tematica con el identificador dado.

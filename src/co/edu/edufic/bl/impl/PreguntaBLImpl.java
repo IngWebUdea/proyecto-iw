@@ -1,18 +1,21 @@
 package co.edu.edufic.bl.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import co.edu.edufic.bl.PreguntaBL;
+import co.edu.edufic.bl.UsuarioBL;
+import co.edu.edufic.dao.PerfilPorUsuarioDAO;
 import co.edu.edufic.dao.PreguntaDAO;
 import co.edu.edufic.dao.TematicaDAO;
 import co.edu.edufic.dao.TematicasPorPreguntaDAO;
 import co.edu.edufic.dao.UsuarioDAO;
 import co.edu.edufic.dto.IdTematicasPorPregunta;
+import co.edu.edufic.dto.PerfilPorUsuario;
 import co.edu.edufic.dto.Pregunta;
 import co.edu.edufic.dto.Tematica;
 import co.edu.edufic.dto.TematicasPorPregunta;
@@ -21,22 +24,30 @@ import co.edu.edufic.exception.MyException;
 
 public class PreguntaBLImpl implements PreguntaBL {
 	
+	public enum PERMISOS_REG_PREG {ADM, ACD, DCN, SCR, DRC};
+	@Autowired UsuarioBL usuarioBL;
+	
 	PreguntaDAO preguntaDAO;
 	UsuarioDAO usuarioDAO;
+	PerfilPorUsuarioDAO perfilPorUsuarioDAO;
 	TematicaDAO tematicaDAO;
 	TematicasPorPreguntaDAO tematicasPorPreguntaDAO;
 	
 
 	@Override
 	public void registrarPregunta(String texto, Integer numOpciones, String jsonOpciones, Character optCorrecta,
-			Character nivelDificultad, Integer idTematica, String loginUsuarioCrea, Date fechaCrea) throws MyException {
+			Character nivelDificultad, Integer idTematica, String loginUsuarioCrea) throws MyException {
 		
 		Pregunta pregunta = null;
-		Usuario usuarioCrea = null;
-		Tematica tematica = null;
+		Usuario usuarioCrea = null;		
+		Tematica tematica = null;		
+		Boolean checkPerfil = Boolean.FALSE;
 		TematicasPorPregunta tematicasPorPregunta = null;
 		IdTematicasPorPregunta idTematicasPorPregunta = null;
+		Set<PerfilPorUsuario> perfiles = null;
 		Set<TematicasPorPregunta> tematicas = null;
+		
+		
 		
 		//JSONObject json;
 		
@@ -71,6 +82,19 @@ public class PreguntaBLImpl implements PreguntaBL {
 			throw new MyException("Temática no registrada en el sistema");
 		}
 		
+		//comproobar si el usuario puede crear preguntas según su perfil				
+		perfiles = usuarioCrea.getPerfiles();		
+		for(PERMISOS_REG_PREG permisos : PERMISOS_REG_PREG.values()){
+			if(usuarioBL.validarPerfilByCode(perfiles, permisos.toString())){
+				checkPerfil = Boolean.TRUE;
+				break;
+			}
+		}
+		
+		if(!checkPerfil){
+			throw new MyException("El usuario no tiene permisos para esta acción");
+		}
+		
 		pregunta = new Pregunta();
 		
 		pregunta.setTexto(texto);
@@ -80,7 +104,7 @@ public class PreguntaBLImpl implements PreguntaBL {
 		pregunta.setNumOpt(numOpciones);
 		pregunta.setNivelDif(nivelDificultad);
 		pregunta.setUsuarioCrea(usuarioCrea);
-		pregunta.setFechaCrea(fechaCrea);
+		pregunta.setFechaCrea(new Date());
 		
 		preguntaDAO.insert(pregunta);	
 		
@@ -248,6 +272,12 @@ public class PreguntaBLImpl implements PreguntaBL {
 	}
 	public void setTematicasPorPreguntaDAO(TematicasPorPreguntaDAO tematicasPorPreguntaDAO) {
 		this.tematicasPorPreguntaDAO = tematicasPorPreguntaDAO;
+	}
+	public PerfilPorUsuarioDAO getPerfilPorUsuarioDAO() {
+		return perfilPorUsuarioDAO;
+	}
+	public void setPerfilPorUsuarioDAO(PerfilPorUsuarioDAO perfilPorUsuarioDAO) {
+		this.perfilPorUsuarioDAO = perfilPorUsuarioDAO;
 	}
 	
 		

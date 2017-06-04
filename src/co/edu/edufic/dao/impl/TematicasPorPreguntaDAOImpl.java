@@ -27,8 +27,7 @@ public class TematicasPorPreguntaDAOImpl implements TematicasPorPreguntaDAO {
 		
 		try{			
 			session = sessionFactory.getCurrentSession();
-			criteria = session.createCriteria(TematicasPorPregunta.class);	
-			
+			criteria = session.createCriteria(TematicasPorPregunta.class);				
 			tematicasPorPreguntas = criteria.list();			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las tematicasPorPreguntas en la db");
@@ -42,7 +41,7 @@ public class TematicasPorPreguntaDAOImpl implements TematicasPorPreguntaDAO {
 		Session session = null;
 		Query query = null;
 		String strQuery = "";
-		 List<TematicasPorPregunta> tematicasPorPreguntas;		
+		List<TematicasPorPregunta> tematicasPorPreguntas;		
 		
 		try{
 			strQuery = "select t from TematicasPorPregunta t where t.idTematicasPorPregunta.tematica.idTematica=:idTematica";
@@ -69,8 +68,7 @@ public class TematicasPorPreguntaDAOImpl implements TematicasPorPreguntaDAO {
 			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando la tematicasPorPregunta en la db");
-		}
-		
+		}		
 		return tematicasPorPregunta;
 	}
 
@@ -115,8 +113,7 @@ public class TematicasPorPreguntaDAOImpl implements TematicasPorPreguntaDAO {
 			throw new MyException("Error borrando la tematicasPorPregunta en la db");
 		}
 
-	}
-	
+	}	
 	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;

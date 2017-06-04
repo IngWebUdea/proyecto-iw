@@ -27,9 +27,8 @@ public class PreguntaBLImplTest {
 	@Test
 	public void testRegistrarPregunta() {		
 		
-		try{
-			
-			preguntaBL.registrarPregunta("Pregunta reg 1", 1, "{\"a\" : \"opt_a\"}" , 'a', '2', 1, "user01", new Date());
+		try{			
+			preguntaBL.registrarPregunta("Pregunta reg 1", 1, "{\"a\" : \"opt_a\"}" , 'a', '2', 1, "user01");
 			
 		}catch (MyException e) {
 			e.printStackTrace();

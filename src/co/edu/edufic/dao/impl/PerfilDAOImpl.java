@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 
 import co.edu.edufic.dao.PerfilDAO;
 import co.edu.edufic.dto.Perfil;
@@ -43,6 +44,25 @@ public class PerfilDAOImpl implements PerfilDAO {
 		try{
 			session = sessionFactory.getCurrentSession();
 			perfil = (Perfil)session.get(Perfil.class, idPerfil);
+			
+		}catch(HibernateException e){
+			throw new MyException("Error consultando el perfil en la db");
+		}
+		
+		return perfil;
+	}
+	
+	@Override
+	public Perfil findByCode(String codePerfil) throws MyException {
+		Session session = null;
+		Criteria criteria = null;
+		Perfil perfil = null;
+		
+		try{
+			session = sessionFactory.getCurrentSession();
+			criteria = session.createCriteria(Perfil.class);
+			criteria.add(Restrictions.eq("codigo", codePerfil));
+			perfil = (Perfil)criteria.uniqueResult();
 			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando el perfil en la db");

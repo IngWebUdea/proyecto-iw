@@ -38,6 +38,8 @@ public class PreguntaWS {
 	 * @return Listado de preguntas en formato JSON
 	 * @throws RemoteException
 	 */	
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
 	public List<Pregunta> preguntasPorTematica(@QueryParam("idTematica") String idTematica) throws RemoteException{
 		
 		List<Pregunta> preguntas = new ArrayList<Pregunta>();
@@ -61,7 +63,6 @@ public class PreguntaWS {
 	 * @param nivelDificultad Nivel de dificulltad estimado de la pregunta.
 	 * @param idTematica Identificador de la temática a la que pertenece la pregunta.
 	 * @param loginUsuarioCrea Login del usuario que crea la pregunta.
-	 * @param fechaCrea Fecha en que es creada la pregunta.
 	 * @return Mensaje de confirmación de exito.
 	 * @throws RemoteException
 	 */
@@ -74,12 +75,11 @@ public class PreguntaWS {
 			@QueryParam("optCorrecta") String optCorrecta,
 			@QueryParam("nivelDificultad") String nivelDificultad, 
 			@QueryParam("idTematica") Integer idTematica, 
-			@QueryParam("loginUsuarioCrea") String loginUsuarioCrea, 
-			@QueryParam("fechaCrea") Date fechaCrea) throws RemoteException {
+			@QueryParam("loginUsuarioCrea") String loginUsuarioCrea) throws RemoteException {
 		
 		try{
 			
-			preguntaBL.registrarPregunta(texto, numOpciones, jsonOpciones, optCorrecta.charAt(0), nivelDificultad.charAt(0), idTematica, loginUsuarioCrea, fechaCrea);
+			preguntaBL.registrarPregunta(texto, numOpciones, jsonOpciones, optCorrecta.charAt(0), nivelDificultad.charAt(0), idTematica, loginUsuarioCrea);
 		}catch(MyException e){
 			throw new RemoteException(e.getMessage());
 		}

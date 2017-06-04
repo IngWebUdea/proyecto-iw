@@ -23,8 +23,7 @@ public class AreaDAOImpl implements AreaDAO {
 		Criteria criteria = null;
 		List<Area> areas = new ArrayList<Area>();
 		
-		try{
-			
+		try{			
 			session = sessionFactory.getCurrentSession();
 			criteria = session.createCriteria(Area.class);
 			
@@ -38,10 +37,8 @@ public class AreaDAOImpl implements AreaDAO {
 
 	@Override
 	public Area findById(Integer idArea) throws MyException {
-
 		Session session = null;
-		Area area = null;
-		
+		Area area = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			area = (Area)session.get(Area.class, idArea);
@@ -56,8 +53,7 @@ public class AreaDAOImpl implements AreaDAO {
 	@Override
 	public void insert(Area area) throws MyException {
 		
-		Session session = null;
-		
+		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			session.save(area);
@@ -69,9 +65,7 @@ public class AreaDAOImpl implements AreaDAO {
 
 	@Override
 	public void update(Area area) throws MyException {
-
-		Session session = null;
-		
+		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			session.update(area);
@@ -84,8 +78,7 @@ public class AreaDAOImpl implements AreaDAO {
 
 	@Override
 	public void delete(Area area) throws MyException {
-		Session session = null;
-		
+		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();			
 			session.delete(area);

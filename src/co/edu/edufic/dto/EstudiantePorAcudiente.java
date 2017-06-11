@@ -14,46 +14,35 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EstudiantePorAcudiente implements Serializable {	
 	
 	private IdEstudiantePorAcudiente idEstudiantePorAcudiente;		//Clave primaria compuesta.
+	private String idGrupo;											//Identificador del grupo.	
 	private Boolean activo;											//Indica si el estudiante está activo en el sistema.
-	private Usuario usuarioCrea;									//Usuario que crea el estuduante.
-	private Usuario usuarioModifica;								//Usuario que modifica el estudiante.
+	private String usuarioCrea;										//Usuario que crea el estuduante.
+	private String usuarioModifica;									//Usuario que modifica el estudiante.
 	private Date fechaCrea;											//Fecha de creación del estudiante.
 	private Date fechaModifica;										//Fecha de modificación del estudiante.
 	
-	public EstudiantePorAcudiente(){ }
-
-	/**
-	 * Constructo r para instanciar objetos de la clase con los parámetros mínimos necesarios para la persistencnia
-	 * @param idEstudiantePorAcudiente Clave primaria compuesta 
-	 * @param activo Indica si el el estudiante es activo o no en el sistema
-	 * @param usuarioCrea Usuario que crea el Estudiante
-	 * @param fechaCrea Fecha de creación del Estudiante
-	 */
-	public EstudiantePorAcudiente(IdEstudiantePorAcudiente idEstudiantePorAcudiente, Boolean activo,
-			Usuario usuarioCrea, Date fechaCrea) {
-		
-		this.idEstudiantePorAcudiente = idEstudiantePorAcudiente;
-		this.activo = activo;
-		this.usuarioCrea = usuarioCrea;
-		this.fechaCrea = fechaCrea;
+	public IdEstudiantePorAcudiente getIdEstudiantePorAcudiente() {
+		return idEstudiantePorAcudiente;
 	}
-	
+	public void setIdEstudiantePorAcudiente(IdEstudiantePorAcudiente idEstudiantePorAcudiente) {
+		this.idEstudiantePorAcudiente = idEstudiantePorAcudiente;
+	}
 	public Boolean getActivo() {
 		return activo;
 	}
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-	public Usuario getUsuarioCrea() {
+	public String getUsuarioCrea() {
 		return usuarioCrea;
 	}
-	public void setUsuarioCrea(Usuario usuarioCrea) {
+	public void setUsuarioCrea(String usuarioCrea) {
 		this.usuarioCrea = usuarioCrea;
 	}
-	public Usuario getUsuarioModifica() {
+	public String getUsuarioModifica() {
 		return usuarioModifica;
 	}
-	public void setUsuarioModifica(Usuario usuarioModifica) {
+	public void setUsuarioModifica(String usuarioModifica) {
 		this.usuarioModifica = usuarioModifica;
 	}
 	public Date getFechaCrea() {
@@ -68,13 +57,11 @@ public class EstudiantePorAcudiente implements Serializable {
 	public void setFechaModifica(Date fechaModifica) {
 		this.fechaModifica = fechaModifica;
 	}
-
-	public IdEstudiantePorAcudiente getIdEstudiantePorAcudiente() {
-		return idEstudiantePorAcudiente;
+	public String getIdGrupo() {
+		return idGrupo;
 	}
-
-	public void setIdEstudiantePorAcudiente(IdEstudiantePorAcudiente idEstudiantePorAcudiente) {
-		this.idEstudiantePorAcudiente = idEstudiantePorAcudiente;
+	public void setIdGrupo(String idGrupo) {
+		this.idGrupo = idGrupo;
 	}
 	
 }

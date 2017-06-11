@@ -7,6 +7,8 @@ import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import co.edu.edufic.dao.TematicaDAO;
 import co.edu.edufic.dto.Tematica;
@@ -23,11 +25,28 @@ public class TematicaDAOImpl implements TematicaDAO {
 		Criteria criteria = null;
 		List<Tematica> tematicas = new ArrayList<Tematica>();
 		
-		try{
-			
+		try{			
+			session = sessionFactory.getCurrentSession();
+			criteria = session.createCriteria(Tematica.class);			
+			tematicas = criteria.list();			
+		}catch(HibernateException e){
+			throw new MyException("Error consultando las temáticas en la db");
+		}
+		
+		return tematicas;
+	}
+	
+	@Override
+	public List<Tematica> allTematicasByArea(Integer idArea) throws MyException {
+		Session session = null;
+		Criteria criteria = null;
+		List<Tematica> tematicas = new ArrayList<Tematica>();
+		
+		try{			
 			session = sessionFactory.getCurrentSession();
 			criteria = session.createCriteria(Tematica.class);
-			
+			criteria.addOrder(Order.asc("tematica"));
+			criteria.createCriteria("area").add(Restrictions.idEq(idArea));			
 			tematicas = criteria.list();			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las temáticas en la db");

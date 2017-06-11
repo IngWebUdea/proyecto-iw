@@ -13,11 +13,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.edufic.bl.UsuarioBL;
+import co.edu.edufic.dto.Usuario;
 import co.edu.edufic.exception.MyException;
 
 
 /**
- * Clase para manejra los servicios concernientes a los usuarios dentro del sistema
+ * Clase para manejar los servicios concernientes a los usuarios dentro del sistema
  * 
  * @author Andrés Castro -- andres.castrop@udea.edu.co
  *
@@ -38,13 +39,12 @@ public class UsuarioWS {
 	 */
 	@Produces(MediaType.TEXT_PLAIN)
 	@POST
-	public String autenticar(@QueryParam("login") String login, @QueryParam("password") String password) throws RemoteException{
-		
+	public String autenticar(@QueryParam("login") String login, @QueryParam("password") String password) throws RemoteException{		
 		try{
 			usuarioBL.autenticar(login, password);			
 		}catch(MyException e){
 			throw new RemoteException(e.getMessage());
 		}		
-		return "Done!";
+		return "Done";
 	}
 }

@@ -9,30 +9,22 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Andrés Castro -- andres.castrop@udea.edu.co
  *
  */
-@XmlRootElement
 public class IdEstudiantePorAcudiente implements Serializable {
 
-	private Persona estudianteId;		//Identificador del estudiante PK
-	private Persona acudienteId;		//Identificador del acudiente PK
-	private Grupo grupoId;				//Identificador del grupo PK.	
+	private String idEstudiante;		//Identificador del estudiante PK
+	private String idAcudiente;		//Identificador del acudiente PK
 	
-	public Persona getEstudianteId() {
-		return estudianteId;
+	public String getIdEstudiante() {
+		return idEstudiante;
 	}
-	public void setEstudianteId(Persona estudianteId) {
-		this.estudianteId = estudianteId;
+	public void setIdEstudiante(String idEstudiante) {
+		this.idEstudiante = idEstudiante;
 	}
-	public Persona getAcudienteId() {
-		return acudienteId;
+	public String getIdAcudiente() {
+		return idAcudiente;
 	}
-	public void setAcudienteId(Persona acudienteId) {
-		this.acudienteId = acudienteId;
+	public void setIdAcudiente(String idAcudiente) {
+		this.idAcudiente = idAcudiente;
 	}
-	public Grupo getGrupoId() {
-		return grupoId;
-	}
-	public void setGrupoId(Grupo grupoId) {
-		this.grupoId = grupoId;
-	}
-	
+
 }

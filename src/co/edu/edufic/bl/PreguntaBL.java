@@ -26,7 +26,7 @@ public interface PreguntaBL {
 	 * @throws MyException Ocurre cuando hay un error en la creación de la pregunta.
 	 */
 	public void registrarPregunta(String texto, Integer numOpciones, String jsonOpciones, Character optCorrecta, 
-			Character nivelDificultad, Integer idTematica, String loginUsuarioCrea, Date fechaCrea)throws MyException;
+			Character nivelDificultad, Integer idTematica, String loginUsuarioCrea)throws MyException;
 	
 	/**
 	 * Consulta las preguntas que pertenecen a una temática específica.

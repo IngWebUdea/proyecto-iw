@@ -2,6 +2,7 @@ package co.edu.edufic.dao;
 
 import java.util.List;
 
+import co.edu.edufic.dto.IdPerfilPorUsuario;
 import co.edu.edufic.dto.PerfilPorUsuario;
 import co.edu.edufic.exception.MyException;
 
@@ -25,7 +26,7 @@ public interface PerfilPorUsuarioDAO {
 	 * @return perfilPorUsuario con el identificador dado.
 	 * @throws MyException Cuando hay un error en la conexión con la db
 	 */
-	public PerfilPorUsuario findById(Integer idPerfilPorUsuario) throws MyException;
+	public PerfilPorUsuario findById(IdPerfilPorUsuario idPerfilPorUsuario) throws MyException;
 	
 	/**
 	 * Almacena los datos de un perfilPorUsuario en la db.

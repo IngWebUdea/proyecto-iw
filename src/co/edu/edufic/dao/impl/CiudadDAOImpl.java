@@ -34,8 +34,15 @@ public class CiudadDAOImpl implements CiudadDAO {
 
 	@Override
 	public Ciudad findById(Integer idCiudad) throws MyException {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = null;		
+		Ciudad ciudad = null;
+		try{
+			session = sessionFactory.getCurrentSession();
+			ciudad = (Ciudad)session.get(Ciudad.class, idCiudad);
+		}catch(HibernateException e){
+			throw new MyException("Error consultando la ciudad en la db");
+		}
+		return ciudad;
 	}
 
 	@Override

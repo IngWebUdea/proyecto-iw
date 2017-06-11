@@ -38,9 +38,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		}
 		
 		//Se valida que la contraseña de usuario corresponda a la registrada en el sistema.
-		pwdEncrypt = Cifrar.encrypt(pwd);		
-		
-		
+		pwdEncrypt = Cifrar.encrypt(pwd);
 		if(!usuario.getPassword().equals(pwdEncrypt)){
 			throw new MyException("Contraseña incorrecta");
 		}
@@ -48,38 +46,77 @@ public class UsuarioBLImpl implements UsuarioBL {
 	}
 	
 	@Override
-	public void validarPerfil(Set<PerfilPorUsuario> perfilesUsuario, Integer idPerfil) throws MyException {
+	public Boolean validarPerfil(String login, Integer idPerfil) throws MyException {		
 		
+		Set<PerfilPorUsuario> perfilesUsuario;
+		Usuario usuario;
+		Integer perfilUsuario;	
+		Boolean checkPerfil = Boolean.FALSE;		
+		
+		if(login.isEmpty() || login == null){
+			throw new MyException("El campo nombre de usuario es requerido");
+		}
+		//se valida que el usuario esté registrado en el sistema
+		usuario = usuarioDAO.findById(login);
+		if(usuario == null){
+			throw new MyException("Usuario no registrado en el sistema");
+		}
+		
+		if(idPerfil == null){
+			throw new MyException("El campo perfil es requerido");
+		}		
+		//Se valida que el perfil esté registrado en el sistema.		
+		if(perfilDAO.findById(idPerfil) == null){
+			throw new MyException("Perfil no registrado en el sistema");
+		}
+		
+		perfilesUsuario = usuario.getPerfiles();
+		if(perfilesUsuario == null){
+			throw new MyException("El usuario no tiene asignado ningún perfil en el sistema");
+		}
+		
+		//Verificamos que el usuario tenga el perfil dado como parámetro.		
+		for(PerfilPorUsuario pu : perfilesUsuario){			
+			perfilUsuario = pu.getIdPerfilPorUsuario().getPerfil().getIdPerfil();
+			if(perfilUsuario == idPerfil){
+				checkPerfil = Boolean.TRUE;
+				break;
+			}
+		}	
+		return checkPerfil;
+		
+	}
+	
+	@Override
+	public Boolean validarPerfilByCode(Set<PerfilPorUsuario> perfilesUsuario, String codePerfil)  throws MyException {
 		
 		Perfil perfil = null;
-		Integer perfilUsuario;	
+		String codePerfilUsr;	
 		Boolean checkPerfil = Boolean.FALSE;
 		
 		//Se validan campos no nulos 
 		if(perfilesUsuario.isEmpty() || perfilesUsuario == null){
 			throw new MyException("El campo perfiles de usuario es requerido");
 		}
-		if(idPerfil == null){
+		if(codePerfil.isEmpty() || codePerfil == null){
 			throw new MyException("El campo perfil es requerido");
 		}
 		
 		//Se valida que el perfil esté registrado en el sistema.
-		perfil = perfilDAO.findById(idPerfil);
+		perfil = perfilDAO.findByCode(codePerfil);
 		if(perfil == null){
 			throw new MyException("Perfil no registrado en el sistema");
 		}
 		
 		//Verificamos que el usuario tenga el perfil dado como parámetro.
 		for(PerfilPorUsuario pu : perfilesUsuario){			
-			perfilUsuario = pu.getIdPerfilPorUsuario().getPerfil().getIdPerfil();
-			if(perfilUsuario == idPerfil){
+			codePerfilUsr = pu.getIdPerfilPorUsuario().getPerfil().getCodigo();
+			if(codePerfilUsr.equals(codePerfil)){
 				checkPerfil = Boolean.TRUE;
+				break;
 			}
-		}				
-		
-		if(!checkPerfil){
-			throw new MyException("El usuario no posee el perfil solicitado");
-		}
+		}	
+		return checkPerfil;
 		
 	}
 		

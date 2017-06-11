@@ -30,13 +30,11 @@ public class TipoDocDAOImpl implements TipoDocDAO {
 		
 		try{
 			session = sessionFactory.getCurrentSession();
-			criteria = session.createCriteria(TipoDoc.class);
-			
+			criteria = session.createCriteria(TipoDoc.class);			
 			tiposDoc = criteria.list();
 		}catch(HibernateException e){
 			throw new MyException("Error consultando los tipos de documento en la db");
-		}
-		
+		}		
 		return tiposDoc;
 	}
 	
@@ -44,15 +42,13 @@ public class TipoDocDAOImpl implements TipoDocDAO {
 	public TipoDoc findById(Integer idTipoDoc) throws MyException {
 		
 		Session session = null;		
-		TipoDoc tipoDoc = null;
-		
+		TipoDoc tipoDoc = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			tipoDoc = (TipoDoc)session.get(TipoDoc.class, idTipoDoc);					
 		}catch(HibernateException e){
 			throw new MyException("Error consultando el país en la db");
-		}
-		
+		}		
 		return tipoDoc;
 	}
 	
@@ -82,8 +78,7 @@ public class TipoDocDAOImpl implements TipoDocDAO {
 	
 	@Override
 	public void delete(TipoDoc tipoDoc) throws MyException {
-		Session session = null;
-		
+		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			session.delete(tipoDoc);			

@@ -27,6 +27,14 @@ public interface PerfilDAO {
 	public Perfil findById(Integer idPerfil) throws MyException;
 	
 	/**
+	 * Obtiene un perfil dado su código en la db.
+	 * @param codePerfil Código del perfil en la db.
+	 * @return perfil con el código dado.
+	 * @throws MyException Cuando hay un error en la conexión con la db
+	 */
+	public Perfil findByCode(String codePerfil) throws MyException;
+	
+	/**
 	 * Almacena los datos de un perfil en la db.
 	 * @param perfil Objeto de la clase {@link Perfil} con la información necesaria para ser almacenado.
 	 * @throws MyException Ocurre cuando hay un error almacenando el perfil.

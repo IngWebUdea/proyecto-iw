@@ -32,7 +32,7 @@ public class PerfilPorUsuarioDAOImplTest {
 			
 			for(PerfilPorUsuario pu : perfilesPorUsuario){
 				System.out.println("Perfil: " + pu.getIdPerfilPorUsuario().getPerfil().getCodigo() + " / "
-						+ "Usuario: " + pu.getIdPerfilPorUsuario().getUsuario().getLogin() + "\n");
+						+ "Usuario: " + pu.getIdPerfilPorUsuario().getUsuario() + "\n");
 			}
 			
 			assertTrue(perfilesPorUsuario.size() > 0);

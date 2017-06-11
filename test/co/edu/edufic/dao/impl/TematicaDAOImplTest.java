@@ -35,6 +35,24 @@ public class TematicaDAOImplTest {
 			fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testAllTematicasByArea() {
+		
+		List<Tematica> tematicas = null;
+		try{
+			
+			tematicas = tematicaDAO.allTematicasByArea(1);
+			
+			for(Tematica t : tematicas){
+				System.out.println("Temática: " + t.getTematica() + " | " + "Área: " + t.getArea().getArea());
+			}
+			
+			assertTrue(tematicas.size() > 0);
+		}catch (MyException e){			
+			fail(e.getMessage());
+		}
+	}
 
 	@Test
 	public void testFindById() {

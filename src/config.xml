@@ -145,6 +145,18 @@
 		<property name="perfilDAO" ref="perfilDaoBean"></property>
 	</bean>
 	
+	<bean name="PersonaBLBean" class="co.edu.edufic.bl.impl.PersonaBLImp" >
+		<property name="personaDAO" ref="personaDaoBean"></property>
+		<property name="tipoDocDAO" ref="tipoDocDaoBean"></property>
+		<property name="ciudadDAO" ref="ciudadDaoBean"></property>
+	</bean>
+	
+	<bean name="EstudianteBLBean" class="co.edu.edufic.bl.impl.EstudianteBLImpl" >
+		<property name="personaDAO" ref="personaDaoBean" ></property>
+		<property name="estudiantePorAcudienteDAO" ref="estudiantePorAcudienteDaoBean" />
+		<property name="usuarioDAO" ref="usuarioDaoBean" />
+	</bean>
+	
 	<bean name="preguntaBLBean" class="co.edu.edufic.bl.impl.PreguntaBLImpl">
 		<property name="preguntaDAO" ref="preguntaDaoBean"></property>
 		<property name="usuarioDAO" ref="usuarioDaoBean"></property>

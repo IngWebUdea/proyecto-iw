@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Andrés Castro -- andres.castrop@udea.edu.co
  *
  */
-@XmlRootElement
 public class IdRegistroRespuesta implements Serializable {
 	
 	private Usuario usuarioId;		//Identificador del usuario que presenta la prueba.

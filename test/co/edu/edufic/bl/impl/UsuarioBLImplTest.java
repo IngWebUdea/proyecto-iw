@@ -66,13 +66,9 @@ public class UsuarioBLImplTest {
 	}
 	
 	@Test
-	public void testValidarPerfilDone() {	
-		
-		Set<PerfilPorUsuario> perfiles;
-		
+	public void testValidarPerfilDone() {
 		try{
-			perfiles = usuarioDAO.findById("user01").getPerfiles();
-			usuarioBL.validarPerfil(perfiles, 1);			
+			usuarioBL.validarPerfil("user01", 1);			
 			
 		}catch (MyException e) {
 			e.printStackTrace();
@@ -82,12 +78,8 @@ public class UsuarioBLImplTest {
 	
 	@Test
 	public void testValidarPerfilFailByUnknowedProfile() {	
-		
-		Set<PerfilPorUsuario> perfiles;
 		try{
-			perfiles = usuarioDAO.findById("user01").getPerfiles();
-			usuarioBL.validarPerfil(perfiles, 0);			
-			
+			usuarioBL.validarPerfil("user01", 0);
 		}catch (MyException e) {
 			e.printStackTrace();
 			fail(e.getMessage());			
@@ -95,13 +87,9 @@ public class UsuarioBLImplTest {
 	}
 	
 	@Test
-	public void testValidarPerfilFailByUnallowedProfile() {	
-		
-		Set<PerfilPorUsuario> perfiles;
-		try{
-			perfiles = usuarioDAO.findById("user02").getPerfiles();
-			usuarioBL.validarPerfil(perfiles, 1);			
-			
+	public void testValidarPerfilFailByUnallowedProfile() {			
+		try{			
+			usuarioBL.validarPerfil("user02", 1);
 		}catch (MyException e) {
 			e.printStackTrace();
 			fail(e.getMessage());			

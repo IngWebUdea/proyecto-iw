@@ -27,7 +27,7 @@ public interface UsuarioBL {
 	 * @param idPerfil Identificador del perfil que se requiere validar.
 	 * @throws MyException Cuando hay un error en la sonsulta del perfil
 	 */
-	public Boolean validarPerfil(Set<PerfilPorUsuario> perfilesUsuario, Integer idPerfil)  throws MyException;
+	public Boolean validarPerfil(String login, Integer idPerfil)  throws MyException;
 	
 	/**
 	 * Método para validar si un código de perfil dado se enecuentra dentro de los perfiles asociados a un usuario.

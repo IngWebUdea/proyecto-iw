@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Andrés Castro -- andres.castrop@udea.edu.co
  *
  */
-@XmlRootElement
 public class IdTematicasPorPregunta implements Serializable {
 	
 	private Tematica tematica;		//Identificador de la temática.

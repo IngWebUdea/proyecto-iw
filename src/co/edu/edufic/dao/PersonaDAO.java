@@ -25,7 +25,7 @@ public interface PersonaDAO {
 	 * @return persona con el identificador dado.
 	 * @throws MyException Cuando hay un error en la conexión con la db
 	 */
-	public Persona findById(Integer idPersona) throws MyException;
+	public Persona findById(String idPersona) throws MyException;
 	
 	/**
 	 * Almacena los datos de una persona en la db.

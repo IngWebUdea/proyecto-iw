@@ -71,7 +71,7 @@ public class PreguntaWS {
 	public String insertarPregunta(
 			@QueryParam("texto") String texto, 
 			@QueryParam("numOpciones") Integer numOpciones, 
-			@QueryParam("jsonOpciones") String jsonOpciones, 
+			@QueryParam("jsonOpciones") String jsonOpciones,
 			@QueryParam("optCorrecta") String optCorrecta,
 			@QueryParam("nivelDificultad") String nivelDificultad, 
 			@QueryParam("idTematica") Integer idTematica, 
@@ -83,7 +83,7 @@ public class PreguntaWS {
 		}catch(MyException e){
 			throw new RemoteException(e.getMessage());
 		}
-		return "Done!";		
+		return "Done";		
 	}
 }
 

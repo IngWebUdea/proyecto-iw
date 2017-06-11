@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import co.edu.edufic.dao.PerfilPorUsuarioDAO;
+import co.edu.edufic.dto.IdPerfilPorUsuario;
 import co.edu.edufic.dto.PerfilPorUsuario;
 import co.edu.edufic.exception.MyException;
 
@@ -28,20 +29,35 @@ public class PerfilPorUsuarioDAOImpl implements PerfilPorUsuarioDAO {
 			criteria = session.createCriteria(PerfilPorUsuario.class);
 			perfilesPorUsuario = criteria.list();
 		}catch(HibernateException e){
-			throw new MyException("Error consultando los usuarios en la db");
+			throw new MyException("Error consultando los perfiles en la db");
 		}
 		return perfilesPorUsuario;
 	}
 
 	@Override
-	public PerfilPorUsuario findById(Integer idPerfilPorUsuario) throws MyException {
-		// TODO Auto-generated method stub
-		return null;
+	public PerfilPorUsuario findById(IdPerfilPorUsuario idPerfilPorUsuario) throws MyException {
+		
+		Session session = null;
+		PerfilPorUsuario perfilPorUsuario = null;
+		try{
+			session = sessionFactory.getCurrentSession();
+			perfilPorUsuario = (PerfilPorUsuario)session.get(PerfilPorUsuario.class, idPerfilPorUsuario);
+		}catch(HibernateException e){
+			throw new MyException("Error consultando el perfil en la bd");
+		}		
+		return perfilPorUsuario;
 	}
 
 	@Override
 	public void insert(PerfilPorUsuario perfilPorUsuario) throws MyException {
-		// TODO Auto-generated method stub
+		
+		Session session = null;
+		try{
+			session = sessionFactory.getCurrentSession();
+			session.save(perfilPorUsuario);
+		}catch(HibernateException e){
+			throw new MyException("Error guardando el perfil en la bd");
+		}
 
 	}
 

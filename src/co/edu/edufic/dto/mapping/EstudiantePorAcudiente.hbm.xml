@@ -6,30 +6,49 @@
     <class name="co.edu.edufic.dto.EstudiantePorAcudiente" table="rel_estudiante_acudiente">
         
         <composite-id name="idEstudiantePorAcudiente" class="co.edu.edufic.dto.IdEstudiantePorAcudiente">
-        	
-        	<key-many-to-one name="estudianteId" class="co.edu.edufic.dto.Persona">
+        	<key-property name="idEstudiante">
         		<column name="idestudiante" length="32" not-null="true"></column>
-        	</key-many-to-one>
-        	
-        	<key-many-to-one name="acudienteId" class="co.edu.edufic.dto.Persona">
+        	</key-property>
+        	<key-property name="idAcudiente">
         		<column name="idacudiente" length="32" not-null="true"></column>
-        	</key-many-to-one>
+        	</key-property> 
+
+<!--         	<key-many-to-one name="estudiante" class="co.edu.edufic.dto.Persona"> -->
+<!--         		<column name="idestudiante" length="32" not-null="true"></column> -->
+<!--         	</key-many-to-one> -->
         	
-        	<key-many-to-one name="grupoId" class="co.edu.edufic.dto.Grupo">
-        		<column name="grupo" length="16" not-null="true"></column>
-        	</key-many-to-one>
+<!--         	<key-many-to-one name="acudiente" class="co.edu.edufic.dto.Persona"> -->
+<!--         		<column name="idacudiente" length="32" not-null="true"></column> -->
+<!--         	</key-many-to-one> -->
         	
+<!--         	<key-many-to-one name="grupo" class="co.edu.edufic.dto.Grupo"> -->
+<!--         		<column name="grupo" length="16" not-null="true"></column> -->
+<!--         	</key-many-to-one> -->        	
         </composite-id>
+        
+        <property name="idGrupo" type="java.lang.String">
+        	<column name="grupo" length="16"></column>
+        </property>
         
         <property name="activo" type="java.lang.Boolean">
             <column name="ACTIVO" not-null="true"/>
         </property>
-        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join">
-            <column name="usuario_crea" length="32" not-null="true"/>
-        </many-to-one>
-        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" fetch="join">
-            <column name="usuario_modifica" length="32"/>
-        </many-to-one>
+        
+        <property name="usuarioCrea" type="java.lang.String">
+        	<column name="usuario_crea" length="32" not-null="true"/>
+        </property>
+        
+        <property name="usuarioModifica" type="java.lang.String">
+        	<column name="usuario_modifica" length="32"/>
+        </property>
+        
+<!--         <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" fetch="join"> -->
+<!--             <column name="usuario_crea" length="32" not-null="true"/> -->
+<!--         </many-to-one> -->
+<!--         <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" fetch="join"> -->
+<!--             <column name="usuario_modifica" length="32"/> -->
+<!--         </many-to-one> -->
+
         <property name="fechaCrea" type="java.util.Date">
             <column name="fecha_crea" not-null="true"/>
         </property>

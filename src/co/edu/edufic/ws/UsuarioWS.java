@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.edufic.bl.UsuarioBL;
+import co.edu.edufic.dto.Usuario;
 import co.edu.edufic.exception.MyException;
 
 
@@ -38,8 +39,7 @@ public class UsuarioWS {
 	 */
 	@Produces(MediaType.TEXT_PLAIN)
 	@POST
-	public String autenticar(@QueryParam("login") String login, @QueryParam("password") String password) throws RemoteException{
-		
+	public String autenticar(@QueryParam("login") String login, @QueryParam("password") String password) throws RemoteException{		
 		try{
 			usuarioBL.autenticar(login, password);			
 		}catch(MyException e){

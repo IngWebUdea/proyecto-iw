@@ -38,9 +38,7 @@ public class UsuarioBLImpl implements UsuarioBL {
 		}
 		
 		//Se valida que la contraseña de usuario corresponda a la registrada en el sistema.
-		pwdEncrypt = Cifrar.encrypt(pwd);		
-		
-		
+		pwdEncrypt = Cifrar.encrypt(pwd);
 		if(!usuario.getPassword().equals(pwdEncrypt)){
 			throw new MyException("Contraseña incorrecta");
 		}
@@ -48,31 +46,41 @@ public class UsuarioBLImpl implements UsuarioBL {
 	}
 	
 	@Override
-	public Boolean validarPerfil(Set<PerfilPorUsuario> perfilesUsuario, Integer idPerfil) throws MyException {		
+	public Boolean validarPerfil(String login, Integer idPerfil) throws MyException {		
 		
-		Perfil perfil = null;
+		Set<PerfilPorUsuario> perfilesUsuario;
+		Usuario usuario;
 		Integer perfilUsuario;	
-		Boolean checkPerfil = Boolean.FALSE;
+		Boolean checkPerfil = Boolean.FALSE;		
 		
-		//Se validan campos no nulos 
-		if(perfilesUsuario.isEmpty() || perfilesUsuario == null){
-			throw new MyException("El campo perfiles de usuario es requerido");
+		if(login.isEmpty() || login == null){
+			throw new MyException("El campo nombre de usuario es requerido");
 		}
+		//se valida que el usuario esté registrado en el sistema
+		usuario = usuarioDAO.findById(login);
+		if(usuario == null){
+			throw new MyException("Usuario no registrado en el sistema");
+		}
+		
 		if(idPerfil == null){
 			throw new MyException("El campo perfil es requerido");
-		}
-		
-		//Se valida que el perfil esté registrado en el sistema.
-		perfil = perfilDAO.findById(idPerfil);
-		if(perfil == null){
+		}		
+		//Se valida que el perfil esté registrado en el sistema.		
+		if(perfilDAO.findById(idPerfil) == null){
 			throw new MyException("Perfil no registrado en el sistema");
 		}
 		
-		//Verificamos que el usuario tenga el perfil dado como parámetro.
+		perfilesUsuario = usuario.getPerfiles();
+		if(perfilesUsuario == null){
+			throw new MyException("El usuario no tiene asignado ningún perfil en el sistema");
+		}
+		
+		//Verificamos que el usuario tenga el perfil dado como parámetro.		
 		for(PerfilPorUsuario pu : perfilesUsuario){			
 			perfilUsuario = pu.getIdPerfilPorUsuario().getPerfil().getIdPerfil();
 			if(perfilUsuario == idPerfil){
 				checkPerfil = Boolean.TRUE;
+				break;
 			}
 		}	
 		return checkPerfil;

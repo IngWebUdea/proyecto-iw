@@ -42,9 +42,10 @@ public class UsuarioDAOImplTest {
 //					System.out.print(pu.getIdPerfilPorUsuario().getIdPerfil().getCodigo() + " - ");
 //				}
 				System.out.println("Persona: " + u.getPersona().getNombre());
-				System.out.println("Creador: " + u.getUsuarioCrea().getLogin());
+				System.out.println("Creador: " + u.getUsuarioCrea());
 				System.out.println("Es activo?: " + u.getActivo());
 				System.out.println("Fecha creación: " + u.getFechaCrea() + "\n");
+				System.out.println("Set de perfiles: " + u.getPerfiles().toArray(new PerfilPorUsuario[0])[0].getIdPerfilPorUsuario().getPerfil().getPerfil() + "\n");
 			}
 			assertTrue(usuarios.size() > 0);
 		} catch (MyException e){
@@ -90,7 +91,14 @@ public class UsuarioDAOImplTest {
 			persona = usuarioCrea.getPersona();
 			perfiles = usuarioCrea.getPerfiles();
 			
-			usuario = new Usuario("user04", "pwd4", Boolean.TRUE, usuarioCrea, fechaCrea, persona, perfiles);
+			usuario = new Usuario();
+			usuario.setLogin("user04");
+			usuario.setPassword("pwd4");
+			usuario.setActivo(Boolean.TRUE);
+			usuario.setUsuarioCrea("user01");
+			usuario.setFechaCrea(new Date());
+			usuario.setPersona(persona);
+			usuario.setPerfiles(perfiles);
 			
 			usuarioDAO.insert(usuario);
 			

@@ -15,13 +15,20 @@
             <column name="activo" not-null="true" />
         </property>        
          
-        <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" lazy="false">
-            <column name="usuariocrea" not-null="true" length="32"/>
-        </many-to-one>
+         <property name="usuarioCrea" type="java.lang.String">
+         	<column name="usuariocrea" not-null="true" length="32"/>
+         </property>
+         <property name="usuarioModifica" type="java.lang.String">
+         	<column name="usuariomodifica" length="32"/>
+         </property>
+         
+<!--         <many-to-one name="usuarioCrea" class="co.edu.edufic.dto.Usuario" lazy="false"> -->
+<!--             <column name="usuariocrea" not-null="true" length="32"/> -->
+<!--         </many-to-one> -->
        
-        <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" lazy="false">
-            <column name="usuariomodifica" not-null="false" length="32"/>
-        </many-to-one>
+<!--         <many-to-one name="usuarioModifica" class="co.edu.edufic.dto.Usuario" lazy="false"> -->
+<!--             <column name="usuariomodifica" not-null="false" length="32"/> -->
+<!--         </many-to-one> -->
         
         <property name="fechaCrea" type="java.util.Date">
             <column name="fechacrea" not-null="true" />

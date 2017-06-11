@@ -47,11 +47,6 @@ public class PreguntaBLImpl implements PreguntaBL {
 		Set<PerfilPorUsuario> perfiles = null;
 		Set<TematicasPorPregunta> tematicas = null;
 		
-		
-		
-		//JSONObject json;
-		
-		
 		//se validan que los campos sean no vacíos
 		if(texto.isEmpty() || texto ==null){
 			throw new MyException("El enunciado de la pregunta es requerido");

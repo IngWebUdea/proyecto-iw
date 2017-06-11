@@ -38,18 +38,18 @@ public class TematicaWS {
 	 * @return Listado con las temáticas del sistema
 	 * @throws RemoteException Cunado ocurre un error al traer la información por el servicio
 	 */
-	@Produces(MediaType.APPLICATION_JSON)
-	@GET
-	public List<Tematica> allTematicas() throws RemoteException {
-		
-		List<Tematica> tematicas = new ArrayList<Tematica>();		
-		try{
-			tematicas = tematicaBL.tematicas();
-		}catch(MyException e){
-			throw new RemoteException(e.getMessage());
-		}
-		return tematicas;
-	}
+//	@Produces(MediaType.APPLICATION_JSON)
+//	@GET
+//	public List<Tematica> allTematicas() throws RemoteException {
+//		
+//		List<Tematica> tematicas = new ArrayList<Tematica>();		
+//		try{
+//			tematicas = tematicaBL.tematicas();
+//		}catch(MyException e){
+//			throw new RemoteException(e.getMessage());
+//		}
+//		return tematicas;
+//	}
 	
 	/**
 	 * Servicio para consultar todas las temáticas del sistema dada el área a la que pertenecen.

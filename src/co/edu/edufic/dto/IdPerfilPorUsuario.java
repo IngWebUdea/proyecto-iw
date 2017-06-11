@@ -9,16 +9,15 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Andrés Castro -- andres.castrop@udea.edu.co
  *
  */
-@XmlRootElement
 public class IdPerfilPorUsuario implements Serializable {
 	
-	private Usuario usuario;		//Identificador del usuario.
+	private String usuario;			//Identificador del usuario.
 	private Perfil perfil;			//Identificador del perfil.
 	
-	public Usuario getUsuario() {
+	public String getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Usuario usuario) {
+	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
 	public Perfil getPerfil() {
@@ -27,4 +26,5 @@ public class IdPerfilPorUsuario implements Serializable {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+	
 }

@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import co.edu.edufic.dao.UsuarioDAO;
+import co.edu.edufic.dto.PerfilPorUsuario;
 import co.edu.edufic.dto.Usuario;
 import co.edu.edufic.exception.MyException;
 
@@ -49,10 +50,8 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	}
 
 	@Override
-	public void insert(Usuario usuario) throws MyException {
-		
-		Session session = null;
-		
+	public void insert(Usuario usuario) throws MyException {		
+		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			session.save(usuario);
@@ -79,8 +78,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	@Override
 	public void delete(Usuario usuario) throws MyException {
-		Session session = null;
-		
+		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
 			usuario.setActivo(Boolean.FALSE);

@@ -3,6 +3,7 @@ package co.edu.edufic.dao;
 import java.util.List;
 
 import co.edu.edufic.dto.IdTematicasPorPregunta;
+import co.edu.edufic.dto.Pregunta;
 import co.edu.edufic.dto.TematicasPorPregunta;
 import co.edu.edufic.exception.MyException;
 
@@ -21,12 +22,12 @@ public interface TematicasPorPreguntaDAO {
 	public List<TematicasPorPregunta> allTematicasPorPreguntas() throws MyException;
 	
 	/**
-	 * Obtiene la lista de tematicasPorPreguntas dado el Id de la temática requierida
-	 * @param tematicaId Identificador de la temática requerida
-	 * @return Listado de tematicas por pregnta
+	 * Obtiene la lista de preguntas dado el Id de la temática
+	 * @param tematicaId Identificador de la temática
+	 * @return Listado de preguntas
 	 * @throws MyException Ocurre cuando hay un error en la conexión a la db. 
 	 */
-	public  List<TematicasPorPregunta> allTematicasPorPreguntasByTematica(Integer idTematica) throws MyException;
+	public List<Pregunta> allPreguntasByTematica(Integer idTematica) throws MyException;
 	
 	/**
 	 * Obtiene una tematicasPorPregunta dado su id en la db.

@@ -5,19 +5,14 @@ import java.util.List;
 
 import co.edu.edufic.bl.TematicaBL;
 import co.edu.edufic.dao.AreaDAO;
-import co.edu.edufic.dao.PreguntaDAO;
 import co.edu.edufic.dao.TematicaDAO;
-import co.edu.edufic.dao.TematicasPorPreguntaDAO;
 import co.edu.edufic.dto.Area;
-import co.edu.edufic.dto.Pregunta;
 import co.edu.edufic.dto.Tematica;
-import co.edu.edufic.dto.TematicasPorPregunta;
 import co.edu.edufic.exception.MyException;
 
 public class TematicaBLImp implements TematicaBL {
 	
 	TematicaDAO tematicaDAO;
-	TematicasPorPreguntaDAO tematicasPorPreguntaDAO;
 	AreaDAO areaDAO;
 
 	@Override
@@ -57,23 +52,8 @@ public class TematicaBLImp implements TematicaBL {
 		tematica = tematicaDAO.findById(idTematica);
 		
 		return tematica;
-	}
+	}	
 	
-	public List<Pregunta> preguntasByIdTematica(Integer idTematica) throws MyException {
-		
-		List<TematicasPorPregunta> tematicasPorPregunta = new ArrayList<TematicasPorPregunta>();
-		List<Pregunta> preguntas = new ArrayList<Pregunta>();
-		if(idTematica.equals(null)){
-			new Exception("El campo temática es requerido");
-		}
-		
-		tematicasPorPregunta = tematicasPorPreguntaDAO.allTematicasPorPreguntasByTematica(idTematica);	
-		for(TematicasPorPregunta tpr : tematicasPorPregunta){
-			preguntas.add(tpr.getIdTematicasPorPregunta().getPregunta());
-		}
-		
-		return preguntas;
-	}
 
 	@Override
 	public void registrarTematica(String nombreTematica, Integer idArea, String sugAprend) throws MyException {
@@ -98,7 +78,7 @@ public class TematicaBLImp implements TematicaBL {
 				
 		tematica = new Tematica();
 		tematica.setTematica(nombreTematica);
-		tematica.setArea(area);
+		tematica.setIdArea(idArea);
 		tematica.setSugAprend(sugAprend);		
 		tematicaDAO.insert(tematica);		
 	}	
@@ -108,12 +88,6 @@ public class TematicaBLImp implements TematicaBL {
 	}
 	public void setTematicaDAO(TematicaDAO tematicaDAO) {
 		this.tematicaDAO = tematicaDAO;
-	}
-	public TematicasPorPreguntaDAO getTematicasPorPreguntaDAO() {
-		return tematicasPorPreguntaDAO;
-	}
-	public void setTematicasPorPreguntaDAO(TematicasPorPreguntaDAO tematicasPorPreguntaDAO) {
-		this.tematicasPorPreguntaDAO = tematicasPorPreguntaDAO;
 	}
 	public AreaDAO getAreaDAO() {
 		return areaDAO;

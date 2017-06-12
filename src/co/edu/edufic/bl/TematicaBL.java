@@ -29,15 +29,6 @@ public interface TematicaBL {
 	public Tematica tematicaById(Integer idTematica) throws MyException;
 	
 	/**
-	 * Método para obtener todas las preguntas del sistema dado el identificador de la temática
-	 * a la que pertenece.
-	 * @param idTematica Identificador de la temática.
-	 * @return Listado con todas las preguntas de la temática dada.
-	 * @throws MyException
-	 */
-	public List<Pregunta> preguntasByIdTematica(Integer idTematica) throws MyException;
-	
-	/**
 	 * Método para registrar una temática en el sistema.
 	 * @param tematica Nombre para la temática.
 	 * @param idArea Identificador del área a la que pertenece la temática.

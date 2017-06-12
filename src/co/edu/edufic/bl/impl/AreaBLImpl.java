@@ -16,8 +16,7 @@ public class AreaBLImpl implements AreaBL {
 	public List<Area> areas() throws MyException {
 		
 		List<Area> areas = new ArrayList<Area>();
-		areas = areaDAO.allAreas();		
-		
+		areas = areaDAO.allAreas();			
 		return areas;
 	}
 

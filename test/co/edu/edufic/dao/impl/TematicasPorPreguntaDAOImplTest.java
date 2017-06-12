@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.edufic.dao.TematicasPorPreguntaDAO;
+import co.edu.edufic.dto.Pregunta;
 import co.edu.edufic.dto.TematicasPorPregunta;
 import co.edu.edufic.exception.MyException;
 
@@ -37,17 +38,11 @@ public class TematicasPorPreguntaDAOImplTest {
 	}
 	
 	@Test
-	public void testAllTematicasPorPreguntasByTematica() {
-		List<TematicasPorPregunta> tematicasPorPreguntas;
-		
+	public void testallPreguntasByTematica() {
+		List<Pregunta> preguntas;		
 		try{
-			tematicasPorPreguntas = tematicasPorPreguntaDAO.allTematicasPorPreguntasByTematica(1); 
-			
-			for(TematicasPorPregunta t : tematicasPorPreguntas){
-				System.out.println("\n Las pregntas con la temática");
-				System.out.println("Pregunta: " + t.getIdTematicasPorPregunta().getPregunta().getTexto() + "\n");
-			}			
-			assertTrue(tematicasPorPreguntas.size() > 0);
+			preguntas = tematicasPorPreguntaDAO.allPreguntasByTematica(1); 
+			assertTrue(!preguntas.isEmpty());
 		}catch (MyException e){	
 			e.printStackTrace();
 			fail(e.getMessage());

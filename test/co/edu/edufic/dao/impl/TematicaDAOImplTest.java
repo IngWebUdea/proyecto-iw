@@ -45,7 +45,7 @@ public class TematicaDAOImplTest {
 			tematicas = tematicaDAO.allTematicasByArea(1);
 			
 			for(Tematica t : tematicas){
-				System.out.println("Temática: " + t.getTematica() + " | " + "Área: " + t.getArea().getArea());
+				System.out.println("Temática: " + t.getTematica() + " | " + "Área: " + t.getIdArea());
 			}
 			
 			assertTrue(tematicas.size() > 0);

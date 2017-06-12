@@ -11,14 +11,14 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 public class IdTematicasPorPregunta implements Serializable {
 	
-	private Tematica tematica;		//Identificador de la temática.
+	private Integer idTematica;		//Identificador de la temática.
 	private Pregunta pregunta;		//Identificador de la pregunta.	
 	
-	public Tematica getTematica() {
-		return tematica;
+	public Integer getIdTematica() {
+		return idTematica;
 	}
-	public void setTematica(Tematica tematica) {
-		this.tematica = tematica;
+	public void setIdTematica(Integer idTematica) {
+		this.idTematica = idTematica;
 	}
 	public Pregunta getPregunta() {
 		return pregunta;

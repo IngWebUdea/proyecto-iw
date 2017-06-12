@@ -1,6 +1,7 @@
 package co.edu.edufic.dto;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -12,8 +13,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Area implements Serializable {
 	
-	private Integer idArea;		//Identificador del área.
-	private String area;		//Nombre del área.
+	private Integer idArea;				//Identificador del área.
+	private String area;				//Nombre del área.
+	private Set<Tematica> tematicas;	//teamticas asociadas al área
 	
 	public Integer getIdArea() {
 		return idArea;
@@ -27,4 +29,11 @@ public class Area implements Serializable {
 	public void setArea(String area) {
 		this.area = area;
 	}
+	public Set<Tematica> getTematicas() {
+		return tematicas;
+	}
+	public void setTematicas(Set<Tematica> tematicas) {
+		this.tematicas = tematicas;
+	}
+	
 }

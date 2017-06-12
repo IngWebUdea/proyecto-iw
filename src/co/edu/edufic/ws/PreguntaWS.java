@@ -40,14 +40,11 @@ public class PreguntaWS {
 	 */	
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
-	public List<Pregunta> preguntasPorTematica(@QueryParam("idTematica") String idTematica) throws RemoteException{
+	public List<Pregunta> preguntasPorTematica(@QueryParam("idTematica") Integer idTematica) throws RemoteException{
 		
 		List<Pregunta> preguntas = new ArrayList<Pregunta>();
-		Integer id;
-		
 		try{
-			id = Integer.parseInt(idTematica);
-			preguntas = preguntaBL.preguntasPorTematica(id);
+			preguntas = preguntaBL.preguntasPorTematica(idTematica);
 		}catch(MyException e){
 			throw new RemoteException(e.getMessage());
 		}
@@ -77,8 +74,7 @@ public class PreguntaWS {
 			@QueryParam("idTematica") Integer idTematica, 
 			@QueryParam("loginUsuarioCrea") String loginUsuarioCrea) throws RemoteException {
 		
-		try{
-			
+		try{			
 			preguntaBL.registrarPregunta(texto, numOpciones, jsonOpciones, optCorrecta.charAt(0), nivelDificultad.charAt(0), idTematica, loginUsuarioCrea);
 		}catch(MyException e){
 			throw new RemoteException(e.getMessage());

@@ -7,11 +7,11 @@
     
     <composite-id name="idTematicasPorPregunta" class="co.edu.edufic.dto.IdTematicasPorPregunta">
     	
-    	<key-many-to-one name="tematica" class="co.edu.edufic.dto.Tematica" lazy="false">
+    	<key-property name="idTematica" type="java.lang.Integer">
     		<column name="tematica" not-null="true"></column>
-    	</key-many-to-one>
+    	</key-property>
     	
-    	<key-many-to-one name="pregunta" class="co.edu.edufic.dto.Pregunta" lazy="false">
+    	<key-many-to-one name="pregunta" class="co.edu.edufic.dto.Pregunta" >
     		<column name="pregunta" not-null="true"></column>
     	</key-many-to-one>
     	

@@ -5,46 +5,49 @@
                 <h4>Elabore una pregunta</h4>
             </div>
             <div class="panel-body">
-                <form name="questionForm" ng-submit="registrar()" style="display: block">
+                <form class="form-horizontal" name="questionForm" ng-submit="registrar()" style="display: block">
                     <div class="form-group">
-                        <textarea id="texto" name="texto" tabindex="1" type="text" class="form-control" rows="6" ng-model="texto" placeholder="Cuerpo" required></textarea>
+                        <textarea id="texto" name="texto" tabindex="1" type="text" class="form-control" rows="6" ng-model="pregunta.texto" placeholder="Cuerpo/texto" required></textarea>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-4 col-md-offset-1">
-                            <selct class="form-control selectpicker show-tick show-menu-arrow" id="area" tabindex="2" title="Sleccione un área" required>
-                                <option value="">Matematicas</option>
-                                <option value="">Humanidades</option>
-                                <option value="">Ciencias</option>
-                            </selct>                       
+                    <div class="row" ng-init="llenarAreas()" >                        
+                        <div class="col-md-4">
+                            <div class="form-group" >
+                                <select class="selectpicker form-control" id="area" tabindex="2" required
+                                    ng-options="item.area for item in areas.area" ng-model="pregunta.area"
+                                    ng-change="llenarTematicas()">
+                                </select>   
+                            </div>                    
                         </div>
-                        <div class="form-group col-md-4 col-md-offset-6">
-                            <selct class="form-control selectpicker show-tick show-menu-arrow" id="tematica" tabindex="3" title="Sleccione un temática" required>
-                                <option value="">Fracciones</option>
-                                <option value="">Historia contemporanea</option>
-                                <option value="">El metodo cientifico</option>
-                                <option value="">Diptongo</option>
-                            </selct>                       
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="numOpt">Numero de opciones</label>
-                        <input type="number" class="form-control" id="numOpt">
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-4 col-md-offset-1">
                             <div class="form-group">
-                                <label for="opt">Opcion</label>
-                                <input type="text" class="form-control" id="opt">
-                            </div>
-                            
+                                <select class="selectpicker form-control" id="tematica" tabindex="3" required
+                                    ng-options="tematica.tematica for tematica in tematicas" 
+                                    ng-model="pregunta.tematica">      
+                                </select> 
+                            </div>                      
                         </div>
                     </div>
-
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <input type="number" ng-model="pregunta.numOpciones" class="form-control" id="numOpt" placeholder="numero de opciones" 
+                                ng-change="capturaNum()" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <div class="form-group">                        
+                                <div class="col-md-12" ng-repeat="item in arregloOpciones track by $index">
+                                    <input type="radio" id="combo" name="optradio" value="clave">clave <span>- </span>
+                                    <input type="text" ng-model="pregunta.jsonOpciones.txt" class="form-control" id="opt" 
+                                        placeholder="opcion de respuesta" required>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-sm-6 col-sm-offset-3">
-                                <input type="submit" name="login-submit" tabindex="3" value="Log In" id="login-submit" class="form-control btn btn-login">
-                                
+                                <input type="submit" name="login-submit" tabindex="3" value="Registrar" id="login-submit" class="form-control btn btn-login">                                
                             </div>
                         </div>
                     </div>

@@ -21,17 +21,14 @@ public class AreaDAOImpl implements AreaDAO {
 		
 		Session session = null;
 		Criteria criteria = null;
-		List<Area> areas = new ArrayList<Area>();
-		
+		List<Area> areas = new ArrayList<Area>();		
 		try{			
 			session = sessionFactory.getCurrentSession();
-			criteria = session.createCriteria(Area.class);
-			
+			criteria = session.createCriteria(Area.class);			
 			areas = criteria.list();			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las áreas en la db");
-		}
-		
+		}		
 		return areas;
 	}
 
@@ -41,8 +38,7 @@ public class AreaDAOImpl implements AreaDAO {
 		Area area = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
-			area = (Area)session.get(Area.class, idArea);
-			
+			area = (Area)session.get(Area.class, idArea);			
 		}catch(HibernateException e){
 			throw new MyException("Error consultando el área en la db");
 		}
@@ -51,13 +47,11 @@ public class AreaDAOImpl implements AreaDAO {
 	}
 
 	@Override
-	public void insert(Area area) throws MyException {
-		
+	public void insert(Area area) throws MyException {		
 		Session session = null;		
 		try{
 			session = sessionFactory.getCurrentSession();
-			session.save(area);
-			
+			session.save(area);			
 		}catch(HibernateException e){
 			throw new MyException("Error guardando el área en la db");
 		}

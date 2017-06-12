@@ -175,7 +175,6 @@
 	
 	<bean name="tematicaBLBean" class="co.edu.edufic.bl.impl.TematicaBLImp">
 		<property name="tematicaDAO" ref="tematicaDaoBean"></property>	
-		<property name="tematicasPorPreguntaDAO" ref="tematicasPorPreguntaDaoBean"></property>
 		<property name="areaDAO" ref="areaDaoBean"></property>
 	</bean>
 	

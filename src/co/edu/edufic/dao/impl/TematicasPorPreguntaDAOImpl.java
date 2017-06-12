@@ -11,6 +11,7 @@ import org.hibernate.SessionFactory;
 
 import co.edu.edufic.dao.TematicasPorPreguntaDAO;
 import co.edu.edufic.dto.IdTematicasPorPregunta;
+import co.edu.edufic.dto.Pregunta;
 import co.edu.edufic.dto.TematicasPorPregunta;
 import co.edu.edufic.exception.MyException;
 
@@ -36,24 +37,22 @@ public class TematicasPorPreguntaDAOImpl implements TematicasPorPreguntaDAO {
 	}
 	
 	@Override
-	public  List<TematicasPorPregunta> allTematicasPorPreguntasByTematica(Integer idTematica) throws MyException {
-		
+	public  List<Pregunta> allPreguntasByTematica(Integer idTematica) throws MyException {		
 		Session session = null;
 		Query query = null;
 		String strQuery = "";
-		List<TematicasPorPregunta> tematicasPorPreguntas;		
+		List<Pregunta> preguntas = new ArrayList<>();
 		
 		try{
-			strQuery = "select t from TematicasPorPregunta t where t.idTematicasPorPregunta.tematica.idTematica=:idTematica";
+			strQuery = "select t.idTematicasPorPregunta.pregunta from TematicasPorPregunta t where t.idTematicasPorPregunta.idTematica=:idTematica";
 			session = sessionFactory.getCurrentSession();
 			query = session.createQuery(strQuery);
 			query.setParameter("idTematica", idTematica);			
-			tematicasPorPreguntas = query.list();
-				
+			preguntas = query.list();
 		}catch(HibernateException e){
 			throw new MyException("Error consultando las tematicasPorPreguntas con parámetro en la db");
 		}
-		return tematicasPorPreguntas;
+		return preguntas;
 	}	
 
 	@Override

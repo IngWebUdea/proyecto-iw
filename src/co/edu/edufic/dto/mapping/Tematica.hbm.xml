@@ -14,8 +14,13 @@
         <property name="sugAprend" type="java.lang.String">
             <column name="sug_aprend" length="512" not-null="false" />
         </property>
-        <many-to-one name="area" class="co.edu.edufic.dto.Area" fetch="join">
-            <column name="AREA" not-null="true"/>
-        </many-to-one>
+        <property name="idArea" type="java.lang.Integer">
+        	 <column name="AREA" not-null="true"/>
+        </property>        
+        
+<!--         <many-to-one name="area" class="co.edu.edufic.dto.Area" fetch="join"> -->
+<!--             <column name="AREA" not-null="true"/> -->
+<!--         </many-to-one> -->
+        
     </class>
 </hibernate-mapping>

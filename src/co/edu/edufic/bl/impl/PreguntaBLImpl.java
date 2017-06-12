@@ -38,14 +38,13 @@ public class PreguntaBLImpl implements PreguntaBL {
 	public void registrarPregunta(String texto, Integer numOpciones, String jsonOpciones, Character optCorrecta,
 			Character nivelDificultad, Integer idTematica, String loginUsuarioCrea) throws MyException {
 		
-		Pregunta pregunta = null;
-		Usuario usuarioCrea = null;		
+		Pregunta pregunta = null;	
 		Tematica tematica = null;		
 		Boolean checkPerfil = Boolean.FALSE;
 		TematicasPorPregunta tematicasPorPregunta = null;
 		IdTematicasPorPregunta idTematicasPorPregunta = null;
 		Set<PerfilPorUsuario> perfiles = null;
-		Set<TematicasPorPregunta> tematicas = null;
+		
 		
 		//se validan que los campos sean no vacíos
 		if(texto.isEmpty() || texto ==null){
@@ -65,173 +64,69 @@ public class PreguntaBLImpl implements PreguntaBL {
 		}
 		if(loginUsuarioCrea.isEmpty() || loginUsuarioCrea ==null){
 			throw new MyException("El usuario que registra la pregunta es requerido");
-		}		
-		
-		usuarioCrea = usuarioDAO.findById(loginUsuarioCrea);
-		if(usuarioCrea == null){
+		}
+		if(usuarioDAO.findById(loginUsuarioCrea) == null){
 			throw new MyException("Usuario no registrado en el sistema");
 		}
-		
+		if(idTematica.equals("") || idTematica == null){
+			throw new MyException("Debe especificar una temática para la pregunta");
+		}
 		tematica = tematicaDAO.findById(idTematica);
 		if(tematica == null){
 			throw new MyException("Temática no registrada en el sistema");
-		}
-		
+		}		
 		//comproobar si el usuario puede crear preguntas según su perfil				
-		perfiles = usuarioCrea.getPerfiles();		
+		perfiles = usuarioDAO.findById(loginUsuarioCrea).getPerfiles();		
 		for(PERMISOS_REG_PREG permisos : PERMISOS_REG_PREG.values()){
 			if(usuarioBL.validarPerfilByCode(perfiles, permisos.toString())){
 				checkPerfil = Boolean.TRUE;
 				break;
 			}
-		}
-		
+		}		
 		if(!checkPerfil){
 			throw new MyException("El usuario no tiene permisos para esta acción");
 		}
 		
-		pregunta = new Pregunta();
-		
+		pregunta = new Pregunta();		
 		pregunta.setTexto(texto);
 		pregunta.setNumOpt(numOpciones);
 		pregunta.setOpciones(jsonOpciones);
 		pregunta.setOptCorrecta(optCorrecta);
 		pregunta.setNumOpt(numOpciones);
 		pregunta.setNivelDif(nivelDificultad);
-		pregunta.setUsuarioCrea(usuarioCrea);
-		pregunta.setFechaCrea(new Date());
-		
+		pregunta.setUsuarioCrea(loginUsuarioCrea);
+		pregunta.setFechaCrea(new Date());		
 		preguntaDAO.insert(pregunta);	
 		
-		//Se inserta un objeto en el set que contiene las temáticas
-//		idTematicasPorPregunta = new IdTematicasPorPregunta();
-//		idTematicasPorPregunta.setPregunta(pregunta);		
-//		idTematicasPorPregunta.setTematica(tematica);
-//		
-//		tematicasPorPregunta = new TematicasPorPregunta();
-//		tematicasPorPregunta.setIdTematicasPorPregunta(idTematicasPorPregunta);		
-//		
-//		tematicas = new Set<TematicasPorPregunta>() {
-//			
-//			@Override
-//			public <T> T[] toArray(T[] a) {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//			
-//			@Override
-//			public Object[] toArray() {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//			
-//			@Override
-//			public int size() {
-//				// TODO Auto-generated method stub
-//				return 0;
-//			}
-//			
-//			@Override
-//			public boolean retainAll(Collection<?> c) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public boolean removeAll(Collection<?> c) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public boolean remove(Object o) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public Iterator<TematicasPorPregunta> iterator() {
-//				// TODO Auto-generated method stub
-//				return null;
-//			}
-//			
-//			@Override
-//			public boolean isEmpty() {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public boolean containsAll(Collection<?> c) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public boolean contains(Object o) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public void clear() {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
-//			@Override
-//			public boolean addAll(Collection<? extends TematicasPorPregunta> c) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//			
-//			@Override
-//			public boolean add(TematicasPorPregunta e) {
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//		};
-//		tematicas.add(tematicasPorPregunta);
-//		
-//		pregunta.setTematicas(tematicas);
-//		
-//		tematicasPorPreguntaDAO.insert(tematicasPorPregunta);	
-
+		idTematicasPorPregunta = new IdTematicasPorPregunta();
+		idTematicasPorPregunta.setIdTematica(idTematica);
+		idTematicasPorPregunta.setPregunta(pregunta);
+		tematicasPorPreguntaDAO.insert(tematicasPorPregunta);
 	}
 	
 	@Override
 	public List<Pregunta> preguntasPorTematica(Integer idTematica) throws MyException {
 		
 		List<Pregunta> preguntas = new ArrayList<Pregunta>();
-		List<TematicasPorPregunta> tematicasPorPregunta = new ArrayList<TematicasPorPregunta>();
-		Tematica tematica;
 		
 		if(idTematica == null){
 			throw new MyException("El campo temática es requerido");
-		}
+		}		
 		
-		tematica = tematicaDAO.findById(idTematica);
-		if(tematica == null){
+		if(tematicaDAO.findById(idTematica) == null){
 			throw new MyException("Temática no registrada en el sistema");
-		}
-		
-		tematicasPorPregunta = tematicasPorPreguntaDAO.allTematicasPorPreguntasByTematica(idTematica);
-		if(tematicasPorPregunta.isEmpty()){
+		}		
+		preguntas = tematicasPorPreguntaDAO.allPreguntasByTematica(idTematica);
+		if(preguntas.isEmpty()){
 			throw new MyException("No existen preguntas asociadas a la temática");
 		}
-		
-		for(TematicasPorPregunta tp : tematicasPorPregunta){
-			preguntas.add(tp.getIdTematicasPorPregunta().getPregunta());
-		}
-		
 		return preguntas;
 	}
 	
 	@Override
 	public List<Pregunta> preguntasPorArea(Integer idArea) throws MyException{
 		
-		List<Pregunta> preguntas = new ArrayList<Pregunta>();
-		
+		List<Pregunta> preguntas = new ArrayList<Pregunta>();	
 		
 		
 		return preguntas;

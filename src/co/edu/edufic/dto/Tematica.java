@@ -15,7 +15,7 @@ public class Tematica implements Serializable {
 	private Integer idTematica;		//Identificador de la temática.
 	private String tematica;		//Nombre de la temática.
 	private String sugAprend;		//Sugerencia de aprendizaje para la temática
-	private Area area;				//Área a la que pertenece la temática.
+	private Integer idArea;			//Área a la que pertenece la temática.
 	
 	public Integer getIdTematica() {
 		return idTematica;
@@ -35,10 +35,11 @@ public class Tematica implements Serializable {
 	public void setSugAprend(String sugAprend) {
 		this.sugAprend = sugAprend;
 	}
-	public Area getArea() {
-		return area;
+	public Integer getIdArea() {
+		return idArea;
 	}
-	public void setArea(Area area) {
-		this.area = area;
-	}	
+	public void setIdArea(Integer idArea) {
+		this.idArea = idArea;
+	}
+	
 }

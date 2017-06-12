@@ -87,25 +87,5 @@ public class TematicaWS {
 		
 		return tematica;
 	}
-	
-	/**
-	 * Servicio para consultar todas las preguntas existentes de una temática dada.
-	 * @param idTematica Identificador de la tematica.
-	 * @return Listado con las preguntas de la temática dada.
-	 * @throws RemoteException
-	 */
-	@Produces(MediaType.APPLICATION_JSON)
-	@PUT
-	public List<Pregunta> preguntasByIdTematica(@QueryParam("idTematica") Integer idTematica) throws RemoteException {
-		
-		List<Pregunta> preguntas = new ArrayList<Pregunta>();
-		try{
-			preguntas = tematicaBL.preguntasByIdTematica(idTematica);
-		}catch(MyException e){
-			throw new RemoteException(e.getMessage()); 
-		}
-		
-		return preguntas;
-	}
 
 }

@@ -44,21 +44,7 @@
         <set name="perfiles" fetch="join">
         	<key column="usuario" ></key>
         	<one-to-many class="co.edu.edufic.dto.PerfilPorUsuario" />        	
-        </set>       
-        
-        
-        <!--  
-        
-        <set name="perfiles" fetch="join">
-        	<key column="idPerfil"></key>
-        	<one-to-many class="co.edu.edufic.dto.PerfilPorUsuario" />
-        </set>
-        
-        <property name="persona" type="java.lang.String">
-            <column name="persona" not-null="true"/>
-        </property>
-        
-        -->
+        </set> 
         
     </class>
 </hibernate-mapping>

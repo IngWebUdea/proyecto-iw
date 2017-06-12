@@ -11,5 +11,11 @@
         <property name="area" type="java.lang.String">
             <column name="AREA" not-null="true" length="128" />
         </property>
+        
+        <set name="tematicas" fetch="join">
+        	<key column="area" ></key>
+        	<one-to-many class="co.edu.edufic.dto.Tematica" />
+        </set>
+        
     </class>
 </hibernate-mapping>
